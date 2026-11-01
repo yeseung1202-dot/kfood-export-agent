@@ -19,12 +19,15 @@
 Settings → Pages → Source: Deploy from a branch → `main` / `/ (root)` → 저장
 → `https://<아이디>.github.io/<저장소>/` 에서 index.html이 열림
 
-## 3. Streamlit Community Cloud (데모)
+## 3. Streamlit Community Cloud (데모) — 2026-11-01 하지 않기로 함
+심사위원이 잠든 앱을 깨우다 기다리게 될 수 있어 설명 페이지만 배포. 데모 버튼은 LINKS.demo를 비워 숨김, 코드 저장소 버튼만 표시.
+
 share.streamlit.io → GitHub 로그인 → New app → 저장소 / `main` / `app.py`
 - app.py는 API 키 없이 data/*.csv만 읽음. report.py(LLM)는 배포에서 실행하지 않음
 - 무료 앱은 오래 안 쓰면 잠들어 깨우는 데 수십 초 → 첫 링크는 설명 페이지로, 데모는 페이지 안 버튼으로
 
 ## 4. 링크 반영
+- 배포 완료(2026-11-01): 설명 페이지 https://yeseung1202-dot.github.io/kfood-export-agent/ · 저장소 https://github.com/yeseung1202-dot/kfood-export-agent
 - `index.html`의 LINKS에 두 주소 입력 → 커밋·푸시
 - 지원서 '구축방안' 칸 끝에 한 줄: `■ 설명 페이지·데모: https://...` (현재 2,281자라 여유 있음)
 - 시크릿 창에서 링크가 로그인 없이 열리는지 확인
