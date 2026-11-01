@@ -1,0 +1,17 @@
+# API 키
+keys.txt
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# 롯데 실데이터 자리 (공개 금지)
+data/internal/internal.csv
+
+# 내부 메모 (공개 저장소 제외)
+CLAUDE.md
+docs/REVIEW_TODO.md
+docs/HANDOFF_COWORK.md

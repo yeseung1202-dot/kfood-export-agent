@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>K-제과 수출 유망국 발굴 에이전트</title>
+<meta name="description" content="공개 데이터로 37개국을 점수화하고 롯데 생산거점·물류 조건으로 검증해 근거와 함께 유망국 TOP3를 내는 에이전트 (LOTTE AX Challenge 2026 롯데웰푸드 과제 예선 제출 자료)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Black+Han+Sans&family=Gothic+A1:wght@400;500;700;800&display=swap">
+<style>
+/* Layout: 식품회사 브랜드 페이지 문법. 전폭 베이지 '제품 사진' 밴드(코드로 그린 초콜릿 스틱 정물) → 흰 바탕 본문, 레드는 라벨·강조에만. 수치는 모노체 데이터로 */
+:root {
+  --paper: #ffffff;      /* 본문 바탕 */
+  --band: #efe7e2;       /* 사진 배경 같은 웜 베이지 */
+  --sheet: #faf7f5;      /* 카드·표 면 */
+  --ink: #222222;
+  --ink-2: #54585a;
+  --muted: #8a8380;
+  --rule: #e6dfda;
+  --red: #da291c;        /* 브랜드 레드: 강조·상승 */
+  --choco: #4a2a1d;      /* 초콜릿: 하락·TOP3 막대 */
+  --biscuit: #d6b380;    /* 비스킷: 그 외 막대 */
+  --flat: #a49d99;
+  --link: #b3211a;
+  --tag-bg: #f7ebe8;
+  --font-display: "Black Han Sans", "Gothic A1", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;  /* 과자 포장 글자 같은 굵은 제목체 */
+  --font-body: "Gothic A1", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #161211; --band: #241c19; --sheet: #1e1816; --ink: #f2ece8; --ink-2: #c2b8b2; --muted: #958b86;
+    --rule: #352b27; --red: #f0493c; --choco: #b07a5c; --biscuit: #6d5a44; --flat: #6f6763; --link: #ff8a7f;
+    --tag-bg: #2e1d1a; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #161211; --band: #241c19; --sheet: #1e1816; --ink: #f2ece8; --ink-2: #c2b8b2; --muted: #958b86;
+  --rule: #352b27; --red: #f0493c; --choco: #b07a5c; --biscuit: #6d5a44; --flat: #6f6763; --link: #ff8a7f;
+  --tag-bg: #2e1d1a; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.75;
+  word-break: keep-all; overflow-wrap: break-word;
+}
+.gut { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.inner { max-width: 1080px; margin: 0 auto; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-block: 64px 80px; display: grid; gap: 88px; }
+.prose { max-width: 66ch; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; text-wrap: balance; margin: 0; line-height: 1.3; }
+h1 { font-size: clamp(32px, 5.2vw, 52px); font-weight: 400; letter-spacing: -0.01em; line-height: 1.2; }
+h2 { font-size: clamp(24px, 3.2vw, 32px); font-weight: 400; letter-spacing: 0; }
+h3 { font-family: var(--font-body); font-size: 18px; font-weight: 800; }
+p { margin: 0; }
+a { color: var(--link); text-underline-offset: 3px; }
+a:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; border-radius: 2px; }
+.data { font-family: var(--font-data); font-variant-numeric: tabular-nums; }
+.eyebrow { font-family: var(--font-data); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.cap { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.stack { display: grid; gap: 16px; }
+
+/* ---- 히어로: 정물 사진 밴드 ---- */
+.hero { background: var(--band); }
+.hero .inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 32px; align-items: center; padding-block: 56px 48px; }
+.hero-copy { display: grid; gap: 22px; align-content: center; }
+.hero .eyebrow { color: var(--red); }
+.hero .lede { font-size: 18px; color: var(--ink-2); max-width: 46ch; }
+.photo { position: relative; aspect-ratio: 4 / 3; max-width: 100%; }
+.photo canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.manifest { display: flex; flex-wrap: wrap; gap: 0; border-top: 1px solid var(--rule); padding-block: 18px; font-size: 13px; color: var(--ink-2); }
+.manifest span { display: grid; gap: 2px; padding-right: 28px; margin-right: 28px; border-right: 1px solid var(--rule); }
+.manifest span:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
+.manifest b { font-family: var(--font-data); color: var(--ink); font-size: 18px; font-weight: 600; font-variant-numeric: tabular-nums; }
+@media (max-width: 820px) {
+  .hero .inner { grid-template-columns: 1fr; padding-block: 40px 24px; }
+  .photo { order: -1; aspect-ratio: 16 / 10; }
+  .manifest span { padding-right: 16px; margin-right: 16px; padding-block: 4px; }
+}
+
+/* ---- 결과 ---- */
+.result { display: grid; gap: 24px; }
+.result-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: baseline; border-bottom: 2px solid var(--ink); padding-bottom: 14px; }
+.result-head .eyebrow { color: var(--red); display: block; margin-bottom: 6px; }
+.top3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
+.pick { padding: 4px 24px; border-left: 1px solid var(--rule); display: grid; gap: 8px; align-content: start; min-width: 0; }
+.pick:first-child { border-left: 0; padding-left: 0; }
+.pick .rank { font-family: var(--font-data); font-size: 13px; font-weight: 600; color: var(--red); letter-spacing: 0.04em; }
+.pick .name { font-family: var(--font-display); font-size: 32px; font-weight: 400; }
+.pick .nums { font-family: var(--font-data); font-size: 14px; color: var(--ink-2); }
+.pick .nums b { color: var(--ink); font-size: 20px; font-weight: 600; }
+.pick p { font-size: 14px; color: var(--ink-2); }
+.expand { font-size: 14px; color: var(--ink-2); padding: 14px 18px; background: var(--sheet); border-radius: 4px; }
+@media (max-width: 720px) {
+  .top3 { grid-template-columns: 1fr; gap: 20px; }
+  .pick { border-left: 0; padding: 20px 0 0; border-top: 1px solid var(--rule); }
+  .pick:first-child { border-top: 0; padding-top: 0; }
+}
+
+/* ---- 섹션 ---- */
+section { display: grid; gap: 28px; }
+.sec-head { display: grid; gap: 10px; }
+.sec-head .eyebrow { color: var(--red); }
+
+/* 퍼널 */
+.funnel { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.step { background: var(--sheet); border-radius: 4px; padding: 18px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.step .n { font-family: var(--font-data); font-size: 12px; color: var(--muted); }
+.step h3 { font-size: 16px; }
+.step p { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+.chip { justify-self: start; font-family: var(--font-data); font-size: 11px; letter-spacing: 0.04em; padding: 2px 9px; border-radius: 999px; border: 1px solid currentColor; }
+.chip.now { color: var(--paper); background: var(--red); border-color: var(--red); }
+.chip.next { color: var(--muted); border-style: dashed; }
+@media (max-width: 820px) { .funnel { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 460px) { .funnel { grid-template-columns: 1fr; } }
+
+/* 파이프라인 */
+.pipe { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
+.stage { padding: 22px 20px; display: grid; gap: 10px; align-content: start; border-left: 1px solid var(--rule); min-width: 0; }
+.stage:first-child { border-left: 0; padding-left: 0; }
+.stage .file { font-family: var(--font-data); font-size: 13px; font-weight: 500; color: var(--red); }
+.stage ul { margin: 0; padding-left: 18px; font-size: 14px; color: var(--ink-2); display: grid; gap: 4px; }
+.hs { display: flex; flex-wrap: wrap; gap: 6px; }
+.hs span { font-family: var(--font-data); font-size: 12px; background: var(--tag-bg); padding: 2px 8px; border-radius: 3px; color: var(--ink); }
+@media (max-width: 860px) {
+  .pipe { grid-template-columns: 1fr 1fr; }
+  .stage:nth-child(3) { border-left: 0; padding-left: 0; }
+  .stage:nth-child(n+3) { border-top: 1px solid var(--rule); }
+}
+@media (max-width: 520px) {
+  .pipe { grid-template-columns: 1fr; }
+  .stage { border-left: 0; padding-left: 0; }
+  .stage + .stage { border-top: 1px solid var(--rule); }
+}
+
+/* 표 */
+.table-wrap { overflow-x: auto; border-top: 2px solid var(--ink); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; min-width: 620px; }
+th, td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-family: var(--font-data); font-size: 12px; font-weight: 500; letter-spacing: 0.04em; color: var(--muted); background: var(--sheet); }
+td.axis { font-weight: 700; white-space: nowrap; }
+td .src { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; }
+.formula { font-family: var(--font-data); font-size: 15px; background: var(--band); border-radius: 4px; padding: 16px 20px; overflow-x: auto; white-space: nowrap; }
+.two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; }
+@media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
+
+/* 차트 */
+.figure { background: var(--sheet); border-radius: 4px; padding: 24px; display: grid; gap: 14px; position: relative; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 18px; height: 3px; border-radius: 2px; display: inline-block; }
+.legend i.rod { height: 8px; border-radius: 4px; }
+.chart { width: 100%; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font-family: var(--font-body); fill: var(--ink); }
+.chart .tick { fill: var(--muted); font-family: var(--font-data); font-size: 12px; }
+.chart .grid { stroke: var(--rule); stroke-width: 1; }
+.tip { position: fixed; z-index: 20; pointer-events: none; background: var(--ink); color: var(--paper); font-size: 13px; line-height: 1.55; padding: 10px 12px; border-radius: 4px; max-width: 260px; box-shadow: 0 6px 20px rgba(0,0,0,.18); }
+.tip b { font-weight: 700; }
+.tip .data { font-size: 12px; }
+.note { border-left: 3px solid var(--choco); background: var(--sheet); padding: 14px 18px; font-size: 14px; color: var(--ink); }
+.note.rise { border-left-color: var(--red); background: var(--tag-bg); }
+.sr-table { position: absolute; left: 0; top: 0; width: 1px; height: 1px; min-width: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+.wrap > *, section > * { min-width: 0; }
+
+/* 환각 차단 */
+.trace { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 12px; align-items: stretch; }
+.trace .box { background: var(--sheet); border-radius: 4px; padding: 18px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.trace .arrow { align-self: center; font-family: var(--font-data); color: var(--red); font-weight: 600; }
+.trace code { font-family: var(--font-data); font-size: 14px; }
+.slot { background: var(--tag-bg); color: var(--red); padding: 1px 6px; border-radius: 3px; }
+.filled { border-bottom: 2px solid var(--red); font-weight: 600; }
+@media (max-width: 640px) { .trace { grid-template-columns: 1fr; } .trace .arrow { justify-self: center; transform: rotate(90deg); } }
+.checks { margin: 0; padding: 0; list-style: none; display: grid; border-top: 2px solid var(--ink); }
+.checks li { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 8px; padding: 14px 0; border-bottom: 1px solid var(--rule); font-size: 14px; }
+.checks .k { font-family: var(--font-data); color: var(--red); font-weight: 600; }
+.fails { font-size: 14px; color: var(--ink-2); display: grid; gap: 6px; padding-left: 18px; margin: 0; }
+
+/* 근거 카드 */
+.evidence { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.card { background: var(--sheet); border-top: 3px solid var(--red); padding: 22px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.card .tag { font-family: var(--font-data); font-size: 12px; color: var(--muted); }
+.card h3 { font-family: var(--font-display); font-size: 24px; font-weight: 400; }
+.card dl { margin: 0; display: grid; gap: 10px; }
+.card dt { font-size: 12px; font-family: var(--font-data); font-weight: 600; letter-spacing: 0.04em; }
+.card dt.up { color: var(--red); }
+.card dt.down { color: var(--choco); }
+.card dd { margin: 0; font-size: 14px; display: grid; gap: 6px; }
+.card dd span { display: block; }
+.card dd small { display: block; font-size: 12px; color: var(--muted); line-height: 1.5; }
+.card .read { font-size: 13px; color: var(--ink-2); border-top: 1px dashed var(--rule); padding-top: 10px; }
+@media (max-width: 900px) { .evidence { grid-template-columns: 1fr; } }
+
+.plain-list { margin: 0; padding-left: 18px; display: grid; gap: 8px; font-size: 15px; color: var(--ink-2); }
+.plain-list b { color: var(--ink); }
+.plain-list li::marker { color: var(--red); }
+
+/* 링크·꼬리 */
+.links { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 3px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); text-decoration: none; font-weight: 700; font-size: 15px; }
+.btn.primary { background: var(--red); color: #fff; border-color: var(--red); }
+footer.foot { background: var(--band); }
+footer.foot .inner { padding-block: 32px 40px; display: grid; gap: 12px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<!-- 히어로 -->
+<header class="hero gut">
+  <div class="inner">
+    <div class="hero-copy">
+      <p class="eyebrow">LOTTE AX Challenge 2026 · 과제 2 롯데웰푸드 · 예선 제출 자료</p>
+      <h1>K-제과 수출<br>유망국 발굴 에이전트</h1>
+      <p class="lede">많이 팔릴 나라를 넘어, 실제로 보낼 수 있고 남는 나라를 찾습니다. 공개 데이터를 자동으로 모아 37개국을 점수화하고, 롯데의 생산거점과 물류 조건으로 다시 검증한 뒤, 수치마다 출처를 붙여 TOP3를 추천합니다.</p>
+    </div>
+    <div class="photo" aria-hidden="true"><canvas id="still"></canvas></div>
+  </div>
+  <div class="inner">
+    <div class="manifest">
+      <span>품목 HS<b>1905·1806·2105·1704</b></span>
+      <span>후보<b>37개국</b></span>
+      <span>관세청 API<b>1,036회</b></span>
+      <span>안정성 검증<b>2,000회</b></span>
+      <span>자동 테스트<b>13개</b></span>
+    </div>
+  </div>
+</header>
+
+<main class="gut">
+<div class="wrap">
+
+  <!-- 결과 -->
+  <section class="result" aria-labelledby="result-title">
+    <div class="result-head">
+      <div><span class="eyebrow">Result</span><h2 id="result-title">신규 개척형 TOP3</h2></div>
+      <span class="cap">22개국 평가 · 최종 점수 0~100 · 유지율 = 2,000회 재계산 중 TOP3에 든 비율</span>
+    </div>
+    <div class="top3">
+      <div class="pick">
+        <span class="rank">1위</span>
+        <span class="name">싱가포르</span>
+        <span class="nums"><b>69.1</b>점 · 유지율 <b>98%</b></span>
+        <p>'한국 요리'·'korean snack' 검색 관심도 모두 100(세계 최고). 물류성과지수 4.3(세계 1위), 관세 0%. 동남아 거점으로 해석합니다.</p>
+      </div>
+      <div class="pick">
+        <span class="rank">공동 2위</span>
+        <span class="name">네덜란드</span>
+        <span class="nums"><b>59.0</b>점 · 유지율 <b>56%</b></span>
+        <p>한국 제과 수출이 연 33.1% 늘어 평가국 중 가장 빠릅니다. 로테르담을 통한 EU 관문입니다.</p>
+      </div>
+      <div class="pick">
+        <span class="rank">공동 2위</span>
+        <span class="name">영국</span>
+        <span class="nums"><b>59.0</b>점 · 유지율 <b>62%</b></span>
+        <p>제과 수입시장 112.5억 달러에 한국 점유율 0.07%. 가장 큰 여백이 남은 대형 시장입니다.</p>
+      </div>
+    </div>
+    <p class="expand"><b>기존 주력 확대형</b>(이미 한국 제과 수출 2,000만 달러 이상인 시장) 우선순위는 필리핀 63.0 · 캐나다 60.1 · 미국 56.8이며, 세 나라 모두 유지율 80% 이상으로 안정적입니다.</p>
+  </section>
+
+  <!-- 01 가설 -->
+  <section aria-labelledby="s1">
+    <div class="sec-head">
+      <p class="eyebrow">01 · 출발점</p>
+      <h2 id="s1">한국을 먼저 알고, 과자는 그다음에 찾는다</h2>
+    </div>
+    <div class="prose stack">
+      <p>롯데마트에서 한국 과자를 많이 사 가는 외국인 관광객을 보며 세운 가설입니다. 해외 소비자는 드라마와 아이돌로 한국을 먼저 알고, 그다음 한국 과자를 찾습니다. 그렇다면 수출 통계만 보면 수요가 생기는 앞 단계를 놓칩니다.</p>
+      <p>그래서 수요를 네 단계로 나눠 보고, 지금 공개 데이터로 잴 수 있는 단계부터 점수에 넣었습니다.</p>
+    </div>
+    <div class="funnel">
+      <div class="step"><span class="n">① 문화 노출</span><h3>드라마·아이돌로 한국을 안다</h3><p>넷플릭스 국가별 TOP10의 K-콘텐츠 진입 횟수</p><span class="chip next">본선 확장</span></div>
+      <div class="step"><span class="n">② 한국 체험</span><h3>한국을 방문한다</h3><p>한국관광공사 국적별 방한객 수와 증가율</p><span class="chip next">본선 확장</span></div>
+      <div class="step"><span class="n">③ K-푸드 관심</span><h3>한국 음식·과자를 검색한다</h3><p>Google Trends '한국 요리'(언어 무관 주제), 'korean snack', 'Pepero'</p><span class="chip now">예선 반영</span></div>
+      <div class="step"><span class="n">④ 구매</span><h3>실제로 산다</h3><p>관세청 한국→각국 수출액, UN Comtrade 수입시장 점유율</p><span class="chip now">예선 반영</span></div>
+    </div>
+    <p class="cap prose">①②를 더하면 문화 관심은 높은데 한국 과자 점유율은 아직 낮은 나라, 즉 수요가 쌓였지만 구매로 이어지지 않은 '전환 격차' 시장을 직접 찾을 수 있습니다.</p>
+  </section>
+
+  <!-- 02 구조 -->
+  <section aria-labelledby="s2">
+    <div class="sec-head">
+      <p class="eyebrow">02 · 에이전트 구조</p>
+      <h2 id="s2">수집부터 근거 리포트까지 코드로 이어진 4단계</h2>
+    </div>
+    <p class="prose">단계 사이는 파일로만 연결돼 각 단계를 따로 실행하고 검증할 수 있습니다. 같은 입력이면 언제 돌려도 같은 결과가 나옵니다.</p>
+    <div class="pipe">
+      <div class="stage">
+        <span class="file">collect.py</span>
+        <h3>수집</h3>
+        <ul>
+          <li>관세청 수출입실적 API: 37개국 × 7개 기간 × 4개 품목</li>
+          <li>UN Comtrade: 각국 제과 수입액, 한·일·중 점유율</li>
+          <li>World Bank·IMF: 인구구조, 1인당 GDP, 성장 전망, 물류성과지수</li>
+        </ul>
+        <div class="hs"><span>1905 빼빼로·비스킷</span><span>1806 초콜릿</span><span>2105 아이스크림</span><span>1704 설탕과자</span></div>
+      </div>
+      <div class="stage">
+        <span class="file">score.py</span>
+        <h3>점수화·검증</h3>
+        <ul>
+          <li>1단계 과제 3축 점수</li>
+          <li>2단계 롯데 실행가능성 보정</li>
+          <li>신규 개척형과 기존 확대형 분리</li>
+          <li>몬테카를로 2,000회 안정성 검증</li>
+        </ul>
+      </div>
+      <div class="stage">
+        <span class="file">report.py</span>
+        <h3>근거 리포트</h3>
+        <ul>
+          <li>LLM(HyperCLOVA X)이 근거 목록만 보고 문장 작성</li>
+          <li>숫자는 코드가 근거에서 채움</li>
+          <li>LLM 자가검토 → 코드 대조 → 사람 최종 검토</li>
+        </ul>
+      </div>
+      <div class="stage">
+        <span class="file">app.py</span>
+        <h3>데모 화면</h3>
+        <ul>
+          <li>가중치를 바꾸면 즉시 재계산</li>
+          <li>국가별 근거·출처, 안정성, 탈락 사유</li>
+          <li>롯데 내부 데이터 슬롯(예선은 가상 샘플)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 점수 설계 -->
+  <section aria-labelledby="s3">
+    <div class="sec-head">
+      <p class="eyebrow">03 · 점수 설계</p>
+      <h2 id="s3">과제의 세 축으로 고르고, 실행 조건으로 다시 거른다</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>단계 · 축</th><th>지표</th><th>보는 것</th></tr></thead>
+        <tbody>
+          <tr><td class="axis">1단계 · 식품시장 성장성</td><td>제과 수입시장 성장률, 2026~2030 성장 전망, 1인당 GDP, 0~14세 인구 비중, 도시화율<span class="src">UN Comtrade · IMF WEO · World Bank</span></td><td>시장이 커지는가</td></tr>
+          <tr><td class="axis">1단계 · 소비 트렌드</td><td>'한국 요리'(주제) · 'korean snack' · 'Pepero' 국가별 검색 관심도<span class="src">Google Trends, 2025-10-29~2026-10-29</span></td><td>한국 음식을 찾는가</td></tr>
+          <tr><td class="axis">1단계 · 수출입 현황</td><td>한국 제과 수출 증가율(2021→2025, 2026년 1~9월), 일본 대비 한국 점유율 여백<span class="src">관세청 · UN Comtrade</span></td><td>들어갈 자리가 있는가</td></tr>
+          <tr><td class="axis">2단계 · 롯데 실행가능성</td><td>가장 가까운 롯데 거점 기준 리드타임, 한국산 관세(FTA), 할랄, 과자 열량세, OECD 국가위험, 물류성과지수(LPI)<span class="src">항로거리 ÷ 14노트 · WITS · OECD(2026-10-16) · World Bank LPI 2023</span></td><td>실제로 보낼 수 있는가</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="formula" role="note" aria-label="최종 점수 계산식">최종 점수 = 0.7 × 1단계(3축 평균) + 0.3 × 실행가능성 &nbsp;·&nbsp; 지표마다 후보국 내 백분위(0~100)</div>
+    <div class="two-col">
+      <div class="stack">
+        <h3>왜 두 트랙으로 나눴나</h3>
+        <p class="cap" style="font-size:14px">처음 한 번에 순위를 매기자 TOP3에 필리핀·캐나다가 들어왔습니다. 이미 한국 제과 수출 5위·4위인 시장입니다. 검색 관심도와 수출 증가율이 이미 진출한 시장에 유리하기 때문입니다. 그래서 2025년 한국 제과 수출 2,000만 달러 이상 9개국은 '기존 주력 확대형'으로 따로 평가하고, 나머지에서 새 시장을 발굴합니다.</p>
+      </div>
+      <div class="stack">
+        <h3>롯데 거점에서 출발하는 리드타임</h3>
+        <p class="cap" style="font-size:14px">모든 나라를 부산에서 보낸다고 가정하지 않았습니다. 중동은 인도 하리아나 빼빼로 라인, 우즈베키스탄은 카자흐스탄 알마티 공장에서 출발하는 거리로 계산했습니다. 롯데 생산거점이 있는 인도·카자흐스탄·파키스탄·러시아·미얀마는 후보에서 빼고 공급거점으로 씁니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 순위 변화 -->
+  <section aria-labelledby="s4">
+    <div class="sec-head">
+      <p class="eyebrow">04 · 팔릴 나라와 보낼 수 있는 나라</p>
+      <h2 id="s4">실행 조건을 넣으면 순위가 바뀐다</h2>
+    </div>
+    <div class="figure">
+      <div class="legend" aria-hidden="true">
+        <span><i style="background:var(--red)"></i>순위 상승</span>
+        <span><i style="background:var(--choco)"></i>순위 하락</span>
+        <span><i style="background:var(--flat)"></i>변동 없음</span>
+      </div>
+      <div class="chart" id="slope" role="img" aria-label="1단계 과제 3축 순위와 최종 순위 비교. 몽골은 2위에서 7위로, 네덜란드는 6위에서 2위로 이동"></div>
+      <p class="cap">신규 개척형 1단계 TOP10 · 선에 마우스를 올리면 실행가능성 지표가 보입니다.</p>
+      <table class="sr-table" id="slope-table"></table>
+    </div>
+    <div class="two-col">
+      <p class="note"><b>몽골, 2위 → 7위.</b> 'Pepero' 검색 관심도가 후보국 중 가장 높고(100) 0~14세 인구 비중도 31.6%로 가장 높아, 과제 3축만 보면 2위입니다. 하지만 OECD 국가위험 6등급(0~7)과 물류성과지수 2.5로 실행가능성에서 크게 밀렸습니다.</p>
+      <p class="note rise"><b>네덜란드, 6위 → 2위.</b> 리드타임은 32.7일로 TOP10 중 가장 길지만, OECD 국가위험 0, 물류성과지수 4.1, 관세 0%로 실제로 보내는 조건이 좋습니다.</p>
+    </div>
+  </section>
+
+  <!-- 05 안정성 -->
+  <section aria-labelledby="s5">
+    <div class="sec-head">
+      <p class="eyebrow">05 · 결과의 확신도</p>
+      <h2 id="s5">가중치를 2,000번 바꿔도 TOP3에 남는가</h2>
+    </div>
+    <p class="prose">가중치를 임의로 정했다는 반론에 숫자로 답하기 위해, 축 가중치(Dirichlet 분포)·실행가능성 비중(0.1~0.5)·지표 1개 제외를 동시에 무작위로 바꿔 2,000번 다시 계산했습니다.</p>
+    <div class="figure">
+      <div class="legend" aria-hidden="true">
+        <span><i class="rod" style="background:var(--choco)"></i>최종 TOP3</span>
+        <span><i class="rod" style="background:var(--biscuit)"></i>그 외 후보</span>
+        <span><i style="background:transparent;height:0;border-top:2px dashed var(--red)"></i>안정 기준 70%</span>
+      </div>
+      <div class="chart" id="stab" role="img" aria-label="TOP3 진입률: 싱가포르 98%, 영국 62%, 네덜란드 56%, 뉴질랜드 37%"></div>
+      <table class="sr-table" id="stab-table"></table>
+    </div>
+    <p class="prose">1위 싱가포르는 98%로 안정적입니다. 영국과 네덜란드는 50~60%대라 '경합'으로 보고하고, 최종 점수도 소수점 셋째 자리 차이여서 공동 2위로 표기했습니다.</p>
+  </section>
+
+  <!-- 06 환각 차단 -->
+  <section aria-labelledby="s6">
+    <div class="sec-head">
+      <p class="eyebrow">06 · 신뢰성</p>
+      <h2 id="s6">LLM은 문장만 쓰고, 숫자는 코드가 넣는다</h2>
+    </div>
+    <div class="prose stack">
+      <p>처음에는 LLM이 리포트의 숫자를 직접 썼습니다. 그러자 같은 실수가 반복됐습니다.</p>
+      <ul class="fails">
+        <li>반올림해서 바꿔 쓰기: 20.0% → 20%</li>
+        <li>다른 지표의 값을 끌어오기</li>
+        <li>지표 값 2.0을 '2위'로 쓰기</li>
+        <li>약점인 긴 리드타임을 '효율적'이라고 뒤집어 쓰기</li>
+      </ul>
+      <p>그래서 LLM은 숫자 자리에 근거 번호만 쓰고, 코드가 근거 목록에서 값과 출처를 채우도록 바꿨습니다.</p>
+    </div>
+    <div class="trace">
+      <div class="box"><span class="eyebrow">LLM이 쓴 문장</span><code>한국→영국 제과류 수출액 증가율은 <span class="slot">{10}</span>이며 …</code></div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="box"><span class="eyebrow">코드가 채운 문장</span><code>한국→영국 제과류 수출액 증가율은 <span class="filled">20.0%</span>이며 …</code><span class="cap">[10] 관세청 한국→영국 제과류 수출액 CAGR, 2021→2025</span></div>
+    </div>
+    <ol class="checks">
+      <li><span class="k">1</span><span><b>작성</b> · LLM은 점수 계산 결과에서 뽑은 근거 목록만 받습니다. 근거마다 강점·약점 표시가 붙어 있습니다.</span></li>
+      <li><span class="k">2</span><span><b>자가 검토</b> · 같은 LLM이 근거와 다른 해석이나 과장을 고칩니다.</span></li>
+      <li><span class="k">3</span><span><b>코드 검사</b> · 자리표시 밖의 숫자, 붙여 쓴 자리표시, 잘린 응답이 있으면 다시 생성합니다(최대 3회).</span></li>
+      <li><span class="k">4</span><span><b>사람 검토</b> · 이번 TOP3 리포트에서 지표 이름이 뒤바뀌는 등 해석 오류 6곳을 고쳤고, 숫자 수정은 0건이었습니다.</span></li>
+    </ol>
+    <p class="cap prose">점수 계산을 LLM에 맡기지 않은 이유도 같습니다. 같은 입력이면 같은 결과가 나와야 심사와 현업이 검증할 수 있습니다. LLM은 OpenAI 호환 API로 연결해 설정 한 줄로 바꿀 수 있습니다.</p>
+  </section>
+
+  <!-- 07 근거 -->
+  <section aria-labelledby="s7">
+    <div class="sec-head">
+      <p class="eyebrow">07 · 국가별 근거</p>
+      <h2 id="s7">강점과 약점을 출처와 함께</h2>
+    </div>
+    <div class="evidence">
+      <article class="card">
+        <span class="tag">1위 · 공급거점 한국(부산) · 7.5일</span>
+        <h3>싱가포르</h3>
+        <dl>
+          <dt class="up">강점</dt>
+          <dd>
+            <span>'한국 요리' 100/100, 'korean snack' 100/100<small>Google Trends 국가별 관심도, 2025-10-29~2026-10-29</small></span>
+            <span>1인당 GDP 109,117달러<small>IMF WEO, 2026</small></span>
+            <span>물류성과지수 4.3 · 관세 0%<small>World Bank LPI 2023 · WITS</small></span>
+          </dd>
+          <dt class="down">약점</dt>
+          <dd>
+            <span>한국 제과 수출 연 -3.3%<small>관세청, 2021→2025</small></span>
+            <span>0~14세 인구 비중 11.7%(후보국 최저)<small>World Bank, 2025</small></span>
+          </dd>
+        </dl>
+        <p class="read">재수출 허브라 수입액이 실제 소비보다 클 수 있습니다. 소비시장보다 원롯데 싱가포르 합작법인(2026년 7월 출범)과 연계한 동남아 거점으로 봅니다.</p>
+      </article>
+      <article class="card">
+        <span class="tag">공동 2위 · 공급거점 한국(부산) · 32.7일</span>
+        <h3>네덜란드</h3>
+        <dl>
+          <dt class="up">강점</dt>
+          <dd>
+            <span>한국 제과 수출 연 +33.1%(평가국 최고), 2026년 1~9월 +45.4%<small>관세청, 2021→2025 · 전년 동기 대비</small></span>
+            <span>물류성과지수 4.1 · 1인당 GDP 78,535달러<small>World Bank LPI 2023 · IMF WEO 2026</small></span>
+          </dd>
+          <dt class="down">약점</dt>
+          <dd>
+            <span>리드타임 32.7일<small>부산–로테르담 10,994해리 ÷ 14노트(수에즈 경유)</small></span>
+            <span>성장 전망 1.3% · 'Pepero' 관심도 2/100<small>IMF WEO 2026~2030 평균 · Google Trends</small></span>
+          </dd>
+        </dl>
+        <p class="read">로테르담을 통한 EU 관문입니다. 수입액에 EU 재수출 물량이 섞여 있어 유럽 확산의 출발점으로 해석합니다.</p>
+      </article>
+      <article class="card">
+        <span class="tag">공동 2위 · 공급거점 한국(부산) · 32.4일</span>
+        <h3>영국</h3>
+        <dl>
+          <dt class="up">강점</dt>
+          <dd>
+            <span>제과 수입시장 112.5억 달러, 한국 점유율 0.07%<small>UN Comtrade, 2025</small></span>
+            <span>한국 제과 수출 연 +20.0%, 2026년 1~9월 +26.0%<small>관세청, 2021→2025 · 전년 동기 대비</small></span>
+            <span>OECD 국가위험 0 · 한-영 FTA 관세 0%<small>OECD 2026-10-16 · WITS</small></span>
+          </dd>
+          <dt class="down">약점</dt>
+          <dd>
+            <span>리드타임 32.4일 · 성장 전망 1.4%<small>항로거리 추정 · IMF WEO 2026~2030 평균</small></span>
+            <span>'Pepero' 관심도 2/100<small>Google Trends</small></span>
+          </dd>
+        </dl>
+        <p class="read">인지도가 낮은 대신 큰 시장에서 한국 제과가 빠르게 늘고 있습니다. 단기 수익보다 장기 진입 관점이 맞습니다.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 08 한계 -->
+  <section aria-labelledby="s8">
+    <div class="sec-head">
+      <p class="eyebrow">08 · 한계와 대응</p>
+      <h2 id="s8">모르는 것은 모른다고 표시한다</h2>
+    </div>
+    <ul class="plain-list prose">
+      <li><b>재수출 허브</b> · 싱가포르·네덜란드는 수입액이 실제 소비보다 클 수 있어 화면과 리포트에 표시합니다.</li>
+      <li><b>검색어 언어</b> · 'korean snack'·'Pepero'는 영어 검색어라 비영어권을 과소평가할 수 있어, 언어와 무관한 '한국 요리' 주제로 보완했습니다.</li>
+      <li><b>콜드체인</b> · 국가 간 비교할 공식 지표가 없어 물류성과지수로 대체했습니다. 빙과는 본선 현장 데이터로 보강합니다.</li>
+      <li><b>리드타임</b> · 항로거리 ÷ 14노트로 통일해 항만 대기와 통관 시간은 빠져 있습니다.</li>
+      <li><b>결측 처리</b> · 빈 지표는 0점이 아니라 중립(50)으로 둡니다. 'Pepero' 지표 하나만 있던 몽골이 트렌드 1위가 되는 왜곡을 발견해 도입했습니다.</li>
+      <li><b>내부 데이터</b> · 롯데 국가별 영업이익률 자리를 만들어 두었지만, 예선에서는 가상 샘플로만 시연하고 화면에 표시했습니다.</li>
+    </ul>
+  </section>
+
+  <!-- 09 본선 -->
+  <section aria-labelledby="s9">
+    <div class="sec-head">
+      <p class="eyebrow">09 · 본선 1박 2일 계획</p>
+      <h2 id="s9">엔진은 이미 돌아간다. 현장 데이터를 붙인다</h2>
+    </div>
+    <ol class="checks">
+      <li><span class="k">1</span><span><b>"남는 나라"</b> · 현장 데이터를 내부 데이터 자리에 연결해 국가별 수익성을 점수에 반영합니다.</span></li>
+      <li><span class="k">2</span><span><b>대화형 에이전트</b> · 점수·근거 함수를 function calling 도구로 등록해 "중동에 빙과를 보내면?" 같은 질문에 재계산과 근거로 답합니다.</span></li>
+      <li><span class="k">3</span><span><b>문화 → 구매 전환 격차</b> · 넷플릭스 순위와 방한객 수를 더해 수요가 쌓인 시장을 먼저 찾습니다.</span></li>
+    </ol>
+  </section>
+
+</div>
+</main>
+
+<footer class="foot gut">
+  <div class="inner">
+    <div class="links" id="links">
+      <a class="btn primary" id="link-demo" href="#" target="_blank" rel="noopener">데모 직접 돌려보기</a>
+      <a class="btn" id="link-repo" href="#" target="_blank" rel="noopener">코드 저장소</a>
+    </div>
+    <p class="cap">데이터: 관세청 품목별 국가별 수출입실적 · UN Comtrade · World Bank · IMF World Economic Outlook · Google Trends · OECD Country Risk Classification · WITS. 2026년 10월 말 수집.</p>
+    <p class="cap">LOTTE AX Challenge 2026 예선 제출용 개인 참가작입니다. 롯데의 공식 자료가 아니며, 내부 데이터 자리의 값은 가상 샘플입니다. 상단 이미지는 코드로 그린 일러스트입니다.</p>
+  </div>
+</footer>
+
+<div class="tip" id="tip" hidden></div>
+
+<script>
+// 배포 후 주소를 넣으면 버튼이 켜진다. 비어 있으면 버튼을 숨긴다.
+const LINKS = { demo: "", repo: "" };
+
+// data/scores.csv · data/manual/feasibility.csv · data/sensitivity.csv 에서 코드로 뽑은 값
+const DATA = {"slope": [{"c": "싱가포르", "s1": 1, "fr": 1, "s1v": 66.1, "fe": 75.9, "fv": 69.1, "lt": 7.5, "lpi": 4.3, "oecd": 0, "base": "한국(부산)"}, {"c": "몽골", "s1": 2, "fr": 7, "s1v": 60.4, "fe": 29.6, "fv": 51.2, "lt": 12.1, "lpi": 2.5, "oecd": 6, "base": "한국(부산)"}, {"c": "말레이시아", "s1": 3, "fr": 6, "s1v": 60.2, "fe": 41.7, "fv": 54.6, "lt": 8.1, "lpi": 3.6, "oecd": 2, "base": "한국(부산)"}, {"c": "영국", "s1": 4, "fr": 3, "s1v": 58.1, "fe": 61.1, "fv": 59.0, "lt": 32.4, "lpi": 3.7, "oecd": 0, "base": "한국(부산)"}, {"c": "아랍에미리트", "s1": 5, "fr": 5, "s1v": 58.1, "fe": 49.1, "fv": 55.4, "lt": 6.4, "lpi": 4.0, "oecd": 2, "base": "인도(하리아나 빼빼로 라인)"}, {"c": "네덜란드", "s1": 6, "fr": 2, "s1v": 57.3, "fe": 63.0, "fv": 59.0, "lt": 32.7, "lpi": 4.1, "oecd": 0, "base": "한국(부산)"}, {"c": "뉴질랜드", "s1": 7, "fr": 4, "s1v": 57.0, "fe": 60.2, "fv": 57.9, "lt": 20.0, "lpi": 3.6, "oecd": 0, "base": "한국(부산)"}, {"c": "카타르", "s1": 8, "fr": 8, "s1v": 54.7, "fe": 39.8, "fv": 50.2, "lt": 7.0, "lpi": 3.5, "oecd": 2, "base": "인도(하리아나 빼빼로 라인)"}, {"c": "우즈베키스탄", "s1": 9, "fr": 9, "s1v": 52.0, "fe": 45.4, "fv": 50.0, "lt": 3.0, "lpi": 2.6, "oecd": 5, "base": "카자흐스탄(알마티 공장)"}, {"c": "쿠웨이트", "s1": 10, "fr": 10, "s1v": 51.6, "fe": 34.3, "fv": 46.4, "lt": 7.8, "lpi": 3.2, "oecd": 2, "base": "인도(하리아나 빼빼로 라인)"}], "stab": [{"c": "싱가포르", "v": 97.5, "fr": 1}, {"c": "영국", "v": 62.1, "fr": 3}, {"c": "네덜란드", "v": 56.2, "fr": 2}, {"c": "뉴질랜드", "v": 36.5, "fr": 4}, {"c": "말레이시아", "v": 20.6, "fr": 6}, {"c": "아랍에미리트", "v": 17.4, "fr": 5}, {"c": "몽골", "v": 3.4, "fr": 7}, {"c": "카타르", "v": 3.2, "fr": 8}, {"c": "우즈베키스탄", "v": 2.4, "fr": 9}]};
+const STABLE = 70;
+
+(function links() {
+  for (const k of ["demo", "repo"]) {
+    const a = document.getElementById("link-" + k);
+    if (LINKS[k]) a.href = LINKS[k]; else a.hidden = true;
+  }
+  if (!LINKS.demo && !LINKS.repo) document.getElementById("links").hidden = true;
+})();
+
+// ---- 히어로 정물: 베이지 바탕 위 초콜릿 코팅 스틱 (상표·포장 없이 제품 사진 느낌만) ----
+function drawStill() {
+  const cv = document.getElementById("still");
+  const box = cv.parentElement.getBoundingClientRect();
+  if (!box.width) return;
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  cv.width = Math.round(box.width * dpr); cv.height = Math.round(box.height * dpr);
+  const g = cv.getContext("2d");
+  g.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const W = box.width, H = box.height;
+  g.clearRect(0, 0, W, H);
+  let seed = 7;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+
+  // 위에서 비스듬히 떨어지는 부드러운 빛
+  const light = g.createRadialGradient(W * 0.3, H * 0.15, 0, W * 0.3, H * 0.15, W * 0.9);
+  light.addColorStop(0, "rgba(255,255,255,0.28)"); light.addColorStop(1, "rgba(255,255,255,0)");
+  g.fillStyle = light; g.fillRect(0, 0, W, H);
+
+  const len = Math.min(W, H * 1.35) * 0.78, r = Math.max(4, len * 0.022);
+  function stick(cx, cy, ang, dip) {
+    g.save(); g.translate(cx, cy); g.rotate(ang);
+    const x0 = -len / 2, x1 = len / 2, xd = x0 + len * (1 - dip);
+    // 그림자
+    g.save(); g.translate(r * 0.9, r * 1.6); g.filter = `blur(${r * 0.9}px)`;
+    g.fillStyle = "rgba(60,30,15,0.28)"; g.beginPath(); g.roundRect(x0, -r, len, r * 2, r); g.fill(); g.restore();
+    // 비스킷 손잡이
+    const bis = g.createLinearGradient(0, -r, 0, r);
+    bis.addColorStop(0, "#f2d39b"); bis.addColorStop(0.45, "#e2b26b"); bis.addColorStop(1, "#b98443");
+    g.fillStyle = bis; g.beginPath(); g.roundRect(x0, -r * 0.92, len, r * 1.84, r); g.fill();
+    // 초콜릿 코팅 (끝이 살짝 고르지 않게)
+    const ch = g.createLinearGradient(0, -r * 1.1, 0, r * 1.1);
+    ch.addColorStop(0, "#7a4a33"); ch.addColorStop(0.3, "#5b3322"); ch.addColorStop(0.75, "#3a1f14"); ch.addColorStop(1, "#2a160e");
+    g.fillStyle = ch; g.beginPath();
+    g.moveTo(xd, -r * 1.08);
+    g.lineTo(x1 - r, -r * 1.08); g.arcTo(x1 + r * 0.1, -r * 1.08, x1 + r * 0.1, 0, r * 1.05);
+    g.arcTo(x1 + r * 0.1, r * 1.08, x1 - r, r * 1.08, r * 1.05); g.lineTo(xd + r * 0.6, r * 1.08);
+    g.quadraticCurveTo(xd - r * 0.5, r * 0.3, xd + r * 0.2, -r * 0.2);
+    g.quadraticCurveTo(xd - r * 0.4, -r * 0.7, xd, -r * 1.08);
+    g.fill();
+    // 코팅 하이라이트
+    g.strokeStyle = "rgba(255,225,200,0.35)"; g.lineWidth = r * 0.28; g.lineCap = "round";
+    g.beginPath(); g.moveTo(xd + r * 2, -r * 0.5); g.lineTo(x1 - r * 1.5, -r * 0.5); g.stroke();
+    g.restore();
+  }
+  // 대각선으로 흐르듯 놓인 스틱 묶음
+  const base = -0.62, n = 9;
+  for (let i = 0; i < n; i++) {
+    const t = i / (n - 1);
+    const cx = W * (0.3 + t * 0.42) + (rnd() - 0.5) * W * 0.03;
+    const cy = H * (0.36 + t * 0.3) + (rnd() - 0.5) * H * 0.04;
+    stick(cx, cy, base + (rnd() - 0.5) * 0.12, 0.62 + rnd() * 0.06);
+  }
+  // 흩어진 부스러기
+  for (let i = 0; i < 26; i++) {
+    const x = W * (0.12 + rnd() * 0.8), y = H * (0.2 + rnd() * 0.72), s = r * (0.12 + rnd() * 0.3);
+    g.fillStyle = rnd() < 0.55 ? "rgba(74,40,26,0.75)" : "rgba(214,170,105,0.85)";
+    g.beginPath(); g.ellipse(x, y, s * 1.3, s, rnd() * 3, 0, Math.PI * 2); g.fill();
+  }
+}
+
+const NS = "http://www.w3.org/2000/svg";
+const el = (tag, attrs = {}, parent) => {
+  const n = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+  if (parent) parent.appendChild(n);
+  return n;
+};
+const tip = document.getElementById("tip");
+function showTip(html, ev) {
+  tip.innerHTML = html; tip.hidden = false;
+  const pad = 14, w = tip.offsetWidth, h = tip.offsetHeight;
+  let x = ev.clientX + pad, y = ev.clientY + pad;
+  if (x + w > innerWidth - 8) x = ev.clientX - w - pad;
+  if (y + h > innerHeight - 8) y = ev.clientY - h - pad;
+  tip.style.left = Math.max(8, x) + "px"; tip.style.top = Math.max(8, y) + "px";
+}
+const hideTip = () => { tip.hidden = true; };
+
+function moveColor(d) { return d.fr < d.s1 ? "var(--red)" : d.fr > d.s1 ? "var(--choco)" : "var(--flat)"; }
+function moveText(d) { return d.fr < d.s1 ? `▲ ${d.s1 - d.fr}계단 상승` : d.fr > d.s1 ? `▼ ${d.fr - d.s1}계단 하락` : "변동 없음"; }
+function slopeTip(d) {
+  return `<b>${d.c}</b> · ${moveText(d)}<br>
+  <span class="data">1단계 ${d.s1}위 (${d.s1v.toFixed(1)}점) → 최종 ${d.fr}위 (${d.fv.toFixed(1)}점)</span><br>
+  <span class="data">실행가능성 ${d.fe.toFixed(1)}점</span><br>
+  리드타임 ${d.lt}일 · LPI ${d.lpi.toFixed(1)} · OECD 위험 ${d.oecd}<br>
+  <span class="data">출발: ${d.base}</span>`;
+}
+
+function drawSlope() {
+  const box = document.getElementById("slope");
+  box.innerHTML = "";
+  const W = Math.max(300, box.clientWidth);
+  const narrow = W < 520;
+  const fs = narrow ? 12 : 14;
+  const labelW = narrow ? 96 : 150;
+  const H = narrow ? 380 : 440;
+  const top = 34, bottom = 12;
+  const x1 = labelW, x2 = W - labelW;
+  const n = DATA.slope.length;
+  const y = r => top + (r - 1) * (H - top - bottom) / (n - 1);
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H });
+  el("text", { x: x1, y: 14, "text-anchor": "middle", class: "tick" }, svg).textContent = "1단계 (과제 3축)";
+  el("text", { x: x2, y: 14, "text-anchor": "middle", class: "tick" }, svg).textContent = "최종 (+실행가능성)";
+  for (const xx of [x1, x2]) el("line", { x1: xx, x2: xx, y1: top - 10, y2: H - bottom + 4, class: "grid" }, svg);
+  const order = [...DATA.slope].sort((a, b) => (a.fr === a.s1) - (b.fr === b.s1)).reverse();
+  for (const d of order) {
+    const g = el("g", { tabindex: 0, role: "listitem", "aria-label": `${d.c}: 1단계 ${d.s1}위, 최종 ${d.fr}위` }, svg);
+    const c = moveColor(d);
+    const strong = d.fr !== d.s1;
+    el("line", { x1, y1: y(d.s1), x2, y2: y(d.fr), stroke: c, "stroke-width": strong ? 3 : 2, "stroke-linecap": "round", opacity: strong ? 1 : 0.8 }, g);
+    for (const [xx, yy] of [[x1, y(d.s1)], [x2, y(d.fr)]]) el("circle", { cx: xx, cy: yy, r: 5, fill: c, stroke: "var(--sheet)", "stroke-width": 2 }, g);
+    const tl = el("text", { x: x1 - 12, y: y(d.s1) + 4.5, "text-anchor": "end", "font-size": fs, "font-weight": strong ? 700 : 400 }, g);
+    tl.textContent = `${d.c}  ${d.s1}`;
+    const tr = el("text", { x: x2 + 12, y: y(d.fr) + 4.5, "text-anchor": "start", "font-size": fs, "font-weight": strong ? 700 : 400 }, g);
+    tr.textContent = `${d.fr}  ${d.c}`;
+    el("line", { x1, y1: y(d.s1), x2, y2: y(d.fr), stroke: "transparent", "stroke-width": 16, fill: "none" }, g);
+    g.addEventListener("pointermove", ev => showTip(slopeTip(d), ev));
+    g.addEventListener("pointerleave", hideTip);
+    g.addEventListener("focus", () => { const r = g.getBoundingClientRect(); showTip(slopeTip(d), { clientX: r.left + r.width / 2, clientY: r.top }); });
+    g.addEventListener("blur", hideTip);
+    g.style.cursor = "default";
+  }
+  box.appendChild(svg);
+}
+
+// 안정성: 막대를 스틱 모양으로 (길이 = 진입률, 그대로 축척)
+function drawStab() {
+  const box = document.getElementById("stab");
+  box.innerHTML = "";
+  const W = Math.max(300, box.clientWidth);
+  const narrow = W < 520;
+  const fs = narrow ? 12 : 14;
+  const labelW = narrow ? 88 : 112, valW = 48;
+  const rowH = 32, barH = 12, top = 22;
+  const H = top + DATA.stab.length * rowH + 4;
+  const x0 = labelW, x1 = W - valW;
+  const sx = v => x0 + (x1 - x0) * v / 100;
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H });
+  for (const t of [0, 25, 50, 75, 100]) {
+    el("line", { x1: sx(t), x2: sx(t), y1: top - 6, y2: H, class: "grid" }, svg);
+    el("text", { x: sx(t), y: 12, "text-anchor": "middle", class: "tick" }, svg).textContent = t + "%";
+  }
+  DATA.stab.forEach((d, i) => {
+    const yy = top + i * rowH + (rowH - barH) / 2;
+    const isTop = d.fr && d.fr <= 3;
+    const g = el("g", { tabindex: 0, "aria-label": `${d.c}: TOP3 진입률 ${d.v}%` }, svg);
+    el("rect", { x: 0, y: top + i * rowH, width: W, height: rowH, fill: "transparent" }, g);
+    el("text", { x: x0 - 10, y: yy + barH / 2 + 4.5, "text-anchor": "end", "font-size": fs, "font-weight": isTop ? 700 : 400 }, g).textContent = d.c;
+    const w = Math.max(2, sx(d.v) - x0);
+    el("rect", { x: x0, y: yy, width: w, height: barH, rx: Math.min(barH / 2, w / 2), fill: isTop ? "var(--choco)" : "var(--biscuit)" }, g);
+    el("text", { x: x0 + w + 6, y: yy + barH / 2 + 4.5, "font-size": 12, class: "data", fill: "var(--ink)" }, g).textContent = Math.round(d.v) + "%";
+    const html = `<b>${d.c}</b><br><span class="data">TOP3 진입률 ${d.v.toFixed(1)}% (2,000회 중)</span><br>최종 순위 ${d.fr}위`;
+    g.addEventListener("pointermove", ev => showTip(html, ev));
+    g.addEventListener("pointerleave", hideTip);
+    g.addEventListener("focus", () => { const b = g.getBoundingClientRect(); showTip(html, { clientX: b.left + 120, clientY: b.top }); });
+    g.addEventListener("blur", hideTip);
+  });
+  const sxl = sx(STABLE);
+  el("line", { x1: sxl, x2: sxl, y1: top - 6, y2: H, stroke: "var(--red)", "stroke-width": 1.5, "stroke-dasharray": "4 4" }, svg);
+  box.appendChild(svg);
+}
+
+function tables() {
+  const t1 = document.getElementById("slope-table");
+  t1.innerHTML = "<caption>1단계와 최종 순위</caption><tr><th>국가</th><th>1단계</th><th>최종</th><th>실행가능성</th></tr>" +
+    DATA.slope.map(d => `<tr><td>${d.c}</td><td>${d.s1}</td><td>${d.fr}</td><td>${d.fe}</td></tr>`).join("");
+  const t2 = document.getElementById("stab-table");
+  t2.innerHTML = "<caption>TOP3 진입률</caption><tr><th>국가</th><th>진입률</th></tr>" +
+    DATA.stab.map(d => `<tr><td>${d.c}</td><td>${d.v}%</td></tr>`).join("");
+}
+
+function drawAll() { drawStill(); drawSlope(); drawStab(); }
+tables();
+drawAll();
+let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(drawAll, 120); });
+document.fonts && document.fonts.ready.then(drawAll);
+</script>
+
+</body>
+</html>

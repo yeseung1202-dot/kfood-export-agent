@@ -1,0 +1,458 @@
+{
+  "필리핀": {
+    "final_rank": 1,
+    "final": 63.0,
+    "flags": "",
+    "up": [
+      {
+        "indicator": "imp_cagr",
+        "axis": "성장성",
+        "value": 0.166174867985237,
+        "percentile": 100.0,
+        "source": "UN Comtrade 제과류(HS 1905·1806·2105·1704) 수입액 CAGR",
+        "year": "2025"
+      },
+      {
+        "indicator": "wb_0_14세비중",
+        "axis": "성장성",
+        "value": 27.1388610693595,
+        "percentile": 100.0,
+        "source": "World Bank 0~14세 인구 비중",
+        "year": "2025"
+      },
+      {
+        "indicator": "trend_korean_food",
+        "axis": "트렌드",
+        "value": 44.0,
+        "percentile": 100.0,
+        "source": "Google Trends '한국 요리'(주제, 언어 무관) 국가별 관심도",
+        "year": "2025-10-29~2026-10-29"
+      }
+    ],
+    "down": [
+      {
+        "indicator": "imf_gdp_pc_2026",
+        "axis": "성장성",
+        "value": 4359.848,
+        "percentile": 0.0,
+        "source": "IMF WEO 1인당 GDP(USD)",
+        "year": "2026"
+      },
+      {
+        "indicator": "oecd_risk",
+        "axis": "실행가능성",
+        "value": 3.0,
+        "percentile": 7.1,
+        "source": "OECD Country Risk Classification (2026-10-16 기준, docs/sources/oecd_country_risk_classification_current.pdf)",
+        "year": "2026"
+      },
+      {
+        "indicator": "lpi_2023",
+        "axis": "실행가능성",
+        "value": 3.3,
+        "percentile": 8.3,
+        "source": "World Bank API LP.LPI.OVRL.XQ (LPI 2023년판, API 연도 2022)",
+        "year": "2023"
+      }
+    ]
+  },
+  "캐나다": {
+    "final_rank": 2,
+    "final": 60.1,
+    "flags": "",
+    "up": [
+      {
+        "indicator": "kr_exp_cagr_21_25",
+        "axis": "수출입",
+        "value": 0.1601130537909032,
+        "percentile": 100.0,
+        "source": "관세청 한국 제과류 수출액 CAGR",
+        "year": "2021→2025"
+      },
+      {
+        "indicator": "kr_exp_ytd_growth_26",
+        "axis": "수출입",
+        "value": 0.1411944151362991,
+        "percentile": 100.0,
+        "source": "관세청 한국 제과류 수출액 전년동기비",
+        "year": "2026년 1~9월"
+      },
+      {
+        "indicator": "lpi_2023",
+        "axis": "실행가능성",
+        "value": 4.0,
+        "percentile": 91.7,
+        "source": "World Bank API LP.LPI.OVRL.XQ (LPI 2023년판, API 연도 2022)",
+        "year": "2023"
+      }
+    ],
+    "down": [
+      {
+        "indicator": "imf_gdp_growth_fcst_26_30",
+        "axis": "성장성",
+        "value": 1.58,
+        "percentile": 0.0,
+        "source": "IMF WEO 실질GDP성장률 전망 평균",
+        "year": "2026~2030"
+      },
+      {
+        "indicator": "wb_0_14세비중",
+        "axis": "성장성",
+        "value": 14.980307512278,
+        "percentile": 16.7,
+        "source": "World Bank 0~14세 인구 비중",
+        "year": "2025"
+      },
+      {
+        "indicator": "lead_time_days",
+        "axis": "실행가능성",
+        "value": 13.9,
+        "percentile": 28.6,
+        "source": "Fluent Cargo 항로 해상거리 부산–밴쿠버 4,672nm ÷ 14노트",
+        "year": "2026"
+      }
+    ]
+  },
+  "미국": {
+    "final_rank": 3,
+    "final": 56.8,
+    "flags": "",
+    "up": [
+      {
+        "indicator": "imf_gdp_pc_2026",
+        "axis": "성장성",
+        "value": 95212.135,
+        "percentile": 100.0,
+        "source": "IMF WEO 1인당 GDP(USD)",
+        "year": "2026"
+      },
+      {
+        "indicator": "imp_cagr",
+        "axis": "성장성",
+        "value": 0.1118920342524869,
+        "percentile": 85.7,
+        "source": "UN Comtrade 제과류(HS 1905·1806·2105·1704) 수입액 CAGR",
+        "year": "2025"
+      },
+      {
+        "indicator": "trend_korean_snacks",
+        "axis": "트렌드",
+        "value": 26.0,
+        "percentile": 85.7,
+        "source": "Google Trends 'korean snack'(검색어) 국가별 관심도",
+        "year": "2025-10-29~2026-10-29"
+      }
+    ],
+    "down": [
+      {
+        "indicator": "lead_time_days",
+        "axis": "실행가능성",
+        "value": 15.8,
+        "percentile": 0.0,
+        "source": "Fluent Cargo 항로 해상거리 부산–LA 5,323nm ÷ 14노트",
+        "year": "2026"
+      },
+      {
+        "indicator": "trend_pepero",
+        "axis": "트렌드",
+        "value": 2.0,
+        "percentile": 0.0,
+        "source": "Google Trends 'Pepero'(검색어) 국가별 관심도",
+        "year": "2025-10-29~2026-10-29"
+      },
+      {
+        "indicator": "imf_gdp_growth_fcst_26_30",
+        "axis": "성장성",
+        "value": 2.08,
+        "percentile": 28.6,
+        "source": "IMF WEO 실질GDP성장률 전망 평균",
+        "year": "2026~2030"
+      }
+    ]
+  },
+  "호주": {
+    "final_rank": 4,
+    "final": 52.3,
+    "flags": "",
+    "up": [
+      {
+        "indicator": "imf_gdp_pc_2026",
+        "axis": "성장성",
+        "value": 75172.489,
+        "percentile": 85.7,
+        "source": "IMF WEO 1인당 GDP(USD)",
+        "year": "2026"
+      },
+      {
+        "indicator": "oecd_risk",
+        "axis": "실행가능성",
+        "value": 0.0,
+        "percentile": 85.7,
+        "source": "OECD Country Risk Classification (2026-10-16 기준, docs/sources/oecd_country_risk_classification_current.pdf) — 고소득 OECD국 미분류(주석 6) → 0 처리",
+        "year": "2026"
+      },
+      {
+        "indicator": "wb_도시화율",
+        "axis": "성장성",
+        "value": 87.7192672666333,
+        "percentile": 83.3,
+        "source": "World Bank 도시화율",
+        "year": "2025"
+      }
+    ],
+    "down": [
+      {
+        "indicator": "lead_time_days",
+        "axis": "실행가능성",
+        "value": 15.6,
+        "percentile": 14.3,
+        "source": "Fluent Cargo 항로 해상거리 부산–시드니 5,244nm ÷ 14노트",
+        "year": "2026"
+      },
+      {
+        "indicator": "imf_gdp_growth_fcst_26_30",
+        "axis": "성장성",
+        "value": 1.88,
+        "percentile": 14.3,
+        "source": "IMF WEO 실질GDP성장률 전망 평균",
+        "year": "2026~2030"
+      },
+      {
+        "indicator": "gap_jp_kr",
+        "axis": "수출입",
+        "value": -0.0054228946020769,
+        "percentile": 16.7,
+        "source": "UN Comtrade 수입시장 점유율 일본−한국",
+        "year": "2025"
+      }
+    ]
+  },
+  "홍콩": {
+    "final_rank": 5,
+    "final": 51.9,
+    "flags": "재수출 허브(수입액 과대 가능)",
+    "up": [
+      {
+        "indicator": "wb_도시화율",
+        "axis": "성장성",
+        "value": 100.0,
+        "percentile": 100.0,
+        "source": "World Bank 도시화율",
+        "year": "2025"
+      },
+      {
+        "indicator": "lpi_2023",
+        "axis": "실행가능성",
+        "value": 4.0,
+        "percentile": 91.7,
+        "source": "World Bank API LP.LPI.OVRL.XQ (LPI 2023년판, API 연도 2022)",
+        "year": "2023"
+      },
+      {
+        "indicator": "gap_jp_kr",
+        "axis": "수출입",
+        "value": 0.1383020768319585,
+        "percentile": 83.3,
+        "source": "UN Comtrade 수입시장 점유율 일본−한국",
+        "year": "2025"
+      }
+    ],
+    "down": [
+      {
+        "indicator": "kr_exp_cagr_21_25",
+        "axis": "수출입",
+        "value": -0.0087436528681515,
+        "percentile": 0.0,
+        "source": "관세청 한국 제과류 수출액 CAGR",
+        "year": "2021→2025"
+      },
+      {
+        "indicator": "wb_0_14세비중",
+        "axis": "성장성",
+        "value": 10.3113664597281,
+        "percentile": 0.0,
+        "source": "World Bank 0~14세 인구 비중",
+        "year": "2025"
+      },
+      {
+        "indicator": "imp_cagr",
+        "axis": "성장성",
+        "value": 0.0238207462111261,
+        "percentile": 14.3,
+        "source": "UN Comtrade 제과류(HS 1905·1806·2105·1704) 수입액 CAGR",
+        "year": "2025"
+      }
+    ]
+  },
+  "대만": {
+    "final_rank": 6,
+    "final": 44.2,
+    "flags": "",
+    "up": [
+      {
+        "indicator": "gap_jp_kr",
+        "axis": "수출입",
+        "value": 0.15723909181025308,
+        "percentile": 100.0,
+        "source": "UN Comtrade 수입시장 점유율 일본−한국",
+        "year": "2024"
+      },
+      {
+        "indicator": "lead_time_days",
+        "axis": "실행가능성",
+        "value": 2.8,
+        "percentile": 85.7,
+        "source": "Fluent Cargo 항로 해상거리 부산–가오슝 940nm ÷ 14노트",
+        "year": "2026"
+      },
+      {
+        "indicator": "trend_pepero",
+        "axis": "트렌드",
+        "value": 7.0,
+        "percentile": 83.3,
+        "source": "Google Trends 'Pepero'(검색어) 국가별 관심도",
+        "year": "2025-10-29~2026-10-29"
+      }
+    ],
+    "down": [
+      {
+        "indicator": "tariff_hs1905_pct",
+        "axis": "실행가능성",
+        "value": 12.06,
+        "percentile": 0.0,
+        "source": "WITS TRAINS MFN HS190590 단순평균 2023 = 12.06% (한국과 FTA 없음)",
+        "year": "2026"
+      },
+      {
+        "indicator": "kr_exp_ytd_growth_26",
+        "axis": "수출입",
+        "value": -0.1191825161512659,
+        "percentile": 14.3,
+        "source": "관세청 한국 제과류 수출액 전년동기비",
+        "year": "2026년 1~9월"
+      },
+      {
+        "indicator": "kr_exp_cagr_21_25",
+        "axis": "수출입",
+        "value": -0.007559345204496,
+        "percentile": 14.3,
+        "source": "관세청 한국 제과류 수출액 CAGR",
+        "year": "2021→2025"
+      }
+    ]
+  },
+  "중국": {
+    "final_rank": 7,
+    "final": 43.5,
+    "flags": "데이터 부족(트렌드)",
+    "up": [
+      {
+        "indicator": "lead_time_days",
+        "axis": "실행가능성",
+        "value": 1.5,
+        "percentile": 100.0,
+        "source": "Fluent Cargo 항로 해상거리 부산–상하이(타이창) 493nm ÷ 14노트",
+        "year": "2026"
+      },
+      {
+        "indicator": "kr_exp_ytd_growth_26",
+        "axis": "수출입",
+        "value": 0.1349364326245259,
+        "percentile": 85.7,
+        "source": "관세청 한국 제과류 수출액 전년동기비",
+        "year": "2026년 1~9월"
+      },
+      {
+        "indicator": "imf_gdp_growth_fcst_26_30",
+        "axis": "성장성",
+        "value": 3.9,
+        "percentile": 57.1,
+        "source": "IMF WEO 실질GDP성장률 전망 평균",
+        "year": "2026~2030"
+      }
+    ],
+    "down": [
+      {
+        "indicator": "imp_cagr",
+        "axis": "성장성",
+        "value": -0.0119898076235105,
+        "percentile": 0.0,
+        "source": "UN Comtrade 제과류(HS 1905·1806·2105·1704) 수입액 CAGR",
+        "year": "2025"
+      },
+      {
+        "indicator": "tariff_hs1905_pct",
+        "axis": "실행가능성",
+        "value": 10.0,
+        "percentile": 14.3,
+        "source": "WITS TRAINS MFN HS190590 단순평균 2023 = 10%. 한-중 FTA(2015 발효) 협정세율 미확인 → MFN 보수 적용(검토 필요)",
+        "year": "2026"
+      },
+      {
+        "indicator": "kr_exp_cagr_21_25",
+        "axis": "수출입",
+        "value": 0.0023815533502642,
+        "percentile": 28.6,
+        "source": "관세청 한국 제과류 수출액 CAGR",
+        "year": "2021→2025"
+      }
+    ]
+  },
+  "베트남": {
+    "final_rank": 8,
+    "final": 28.2,
+    "flags": "",
+    "up": [
+      {
+        "indicator": "imf_gdp_growth_fcst_26_30",
+        "axis": "성장성",
+        "value": 6.68,
+        "percentile": 100.0,
+        "source": "IMF WEO 실질GDP성장률 전망 평균",
+        "year": "2026~2030"
+      },
+      {
+        "indicator": "wb_0_14세비중",
+        "axis": "성장성",
+        "value": 22.8560173908821,
+        "percentile": 83.3,
+        "source": "World Bank 0~14세 인구 비중",
+        "year": "2025"
+      },
+      {
+        "indicator": "imp_cagr",
+        "axis": "성장성",
+        "value": 0.1004805664698309,
+        "percentile": 71.4,
+        "source": "UN Comtrade 제과류(HS 1905·1806·2105·1704) 수입액 CAGR",
+        "year": "2023"
+      }
+    ],
+    "down": [
+      {
+        "indicator": "gap_jp_kr",
+        "axis": "수출입",
+        "value": -0.0311152012907939,
+        "percentile": 0.0,
+        "source": "UN Comtrade 수입시장 점유율 일본−한국",
+        "year": "2023"
+      },
+      {
+        "indicator": "kr_exp_ytd_growth_26",
+        "axis": "수출입",
+        "value": -0.1317880365831105,
+        "percentile": 0.0,
+        "source": "관세청 한국 제과류 수출액 전년동기비",
+        "year": "2026년 1~9월"
+      },
+      {
+        "indicator": "trend_korean_snacks",
+        "axis": "트렌드",
+        "value": 6.0,
+        "percentile": 0.0,
+        "source": "Google Trends 'korean snack'(검색어) 국가별 관심도",
+        "year": "2025-10-29~2026-10-29"
+      }
+    ]
+  }
+}
