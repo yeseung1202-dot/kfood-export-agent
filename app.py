@@ -41,7 +41,7 @@ with st.sidebar:
     alpha = st.slider("α (실행가능성 비중)", 0.0, 0.6, score.ALPHA, 0.05)
     st.divider()
     use_sample = st.toggle("내부 데이터 슬롯: 가상 샘플로 시연", value=False,
-                           help="본선에서는 data/internal/internal.csv(롯데 실데이터)를 넣으면 자동 반영")
+                           help="data/internal/internal.csv(롯데 실데이터)를 넣으면 자동 반영")
 
 if sum(w) == 0:
     st.error("가중치 합이 0입니다. 하나 이상 올려 주세요.")

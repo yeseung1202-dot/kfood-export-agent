@@ -74,7 +74,7 @@ INDICATORS = [
     ("halal_required", FEAS, -1, "할랄 인증 필요 여부(0/1)", "2026"),
     ("sugar_tax", FEAS, -1, "당류세 시행 여부(0/1)", "2026"),
     ("oecd_risk", FEAS, -1, "OECD 국가위험등급(0~7)", "2026"),
-    # 롯데 내부 데이터 슬롯: data/internal/internal.csv가 있을 때만 반영 (본선 현장 데이터)
+    # 롯데 내부 데이터 슬롯: data/internal/internal.csv가 있을 때만 반영 (롯데 현장 데이터)
     ("internal_margin_pct", FEAS, 1, "롯데웰푸드 내부 국가별 영업이익률(%)", "내부 데이터"),
 ]
 INTERNAL_PREFIX = "internal_"
