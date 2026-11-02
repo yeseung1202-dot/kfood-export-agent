@@ -39,7 +39,7 @@ h1, h2, h3 { margin: 0; line-height: 1.3; text-wrap: balance; }
 h1, h2 { font-family: var(--font-display); font-weight: 400; }
 h1 { font-size: clamp(26px, 4vw, 38px); }
 h2 { font-size: 22px; }
-h3 { font-size: 15px; font-weight: 800; }
+h3, .sub-h { font-family: var(--font-body); font-size: 15px; font-weight: 800; }
 p { margin: 0; }
 a { color: var(--link); text-underline-offset: 3px; }
 :focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
@@ -57,7 +57,7 @@ header.band .sub { color: var(--ink-2); max-width: 70ch; }
 /* 조작판 */
 .panel { position: sticky; top: 16px; display: grid; gap: 22px; background: var(--sheet); padding: 20px; border-radius: 4px; }
 @media (max-width: 880px) { .panel { position: static; } }
-.panel h3 { font-size: 13px; color: var(--ink-2); font-weight: 700; }
+.panel .sub-h { font-size: 13px; color: var(--ink-2); font-weight: 700; }
 .seg { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
 .seg button { font: inherit; font-size: 14px; padding: 9px 6px; border: 0; background: var(--paper); color: var(--ink-2); cursor: pointer; }
 .seg button[aria-pressed="true"] { background: var(--red); color: #fff; font-weight: 700; }
@@ -112,7 +112,7 @@ td.c { font-weight: 700; white-space: nowrap; }
 .drv .lab { font-weight: 700; font-size: 14px; }
 .drv .val { font-family: var(--font-data); font-size: 15px; }
 .drv .pc { font-family: var(--font-data); font-size: 12px; color: var(--muted); }
-.drv h3.up { color: var(--red); } .drv h3.down { color: var(--choco); }
+.drv .sub-h.up { color: var(--red); } .drv .sub-h.down { color: var(--choco); }
 select { font: inherit; font-size: 15px; padding: 8px 10px; border: 1px solid var(--rule); border-radius: 3px; background: var(--paper); color: var(--ink); }
 
 .report { max-width: 78ch; font-size: 15px; }
@@ -142,7 +142,7 @@ footer .inner { padding-block: 20px 32px; display: grid; gap: 6px; }
 
   <aside class="panel" aria-label="설정">
     <div class="stack">
-      <h3 id="track-label">트랙</h3>
+      <h2 class="sub-h" id="track-label">트랙</h2>
       <div class="seg" role="group" aria-labelledby="track-label">
         <button type="button" id="track-new" data-track="new" aria-pressed="true">신규 개척형</button>
         <button type="button" id="track-expand" data-track="expand" aria-pressed="false">기존 주력 확대형</button>
@@ -150,13 +150,13 @@ footer .inner { padding-block: 20px 32px; display: grid; gap: 6px; }
       <p class="cap">2025년 한국 제과 수출 2,000만 달러 이상 = 기존 주력시장</p>
     </div>
     <div class="stack">
-      <h3>1단계 축 가중치</h3>
+      <h2 class="sub-h">1단계 축 가중치</h2>
       <div class="slider"><label for="w0">성장성 <output id="w0-out" class="data"></output></label><input type="range" id="w0" min="0" max="1" step="0.05" value="0.333"></div>
       <div class="slider"><label for="w1">트렌드 <output id="w1-out" class="data"></output></label><input type="range" id="w1" min="0" max="1" step="0.05" value="0.333"></div>
       <div class="slider"><label for="w2">수출입 <output id="w2-out" class="data"></output></label><input type="range" id="w2" min="0" max="1" step="0.05" value="0.333"></div>
     </div>
     <div class="stack">
-      <h3>2단계</h3>
+      <h2 class="sub-h">2단계</h2>
       <div class="slider"><label for="alpha">실행가능성 비중 α <output id="alpha-out" class="data"></output></label><input type="range" id="alpha" min="0" max="0.6" step="0.05" value="0.3"></div>
       <p class="cap">최종 = (1 − α) × 1단계 + α × 실행가능성</p>
     </div>
@@ -182,7 +182,7 @@ footer .inner { padding-block: 20px 32px; display: grid; gap: 6px; }
 
     <section role="tabpanel" id="p-rank" aria-labelledby="tab-rank" class="stack">
       <div class="table-wrap"><table id="rank-table"></table></div>
-      <h3>1단계(과제 3축만) → 최종(+ 롯데 실행가능성)</h3>
+      <h2 class="sub-h">1단계(과제 3축만) → 최종(+ 롯데 실행가능성)</h2>
       <div class="table-wrap compare"><table id="compare"></table></div>
     </section>
 
@@ -191,8 +191,8 @@ footer .inner { padding-block: 20px 32px; display: grid; gap: 6px; }
       <select id="country"></select>
       <p id="why-head"></p>
       <div class="drv">
-        <div class="stack"><h3 class="up">점수를 올린 지표</h3><ol id="up"></ol></div>
-        <div class="stack"><h3 class="down">점수를 깎은 지표</h3><ol id="down"></ol></div>
+        <div class="stack"><h2 class="sub-h up">점수를 올린 지표</h2><ol id="up"></ol></div>
+        <div class="stack"><h2 class="sub-h down">점수를 깎은 지표</h2><ol id="down"></ol></div>
       </div>
       <p class="cap">백분위는 1단계 지표는 트랙 내 평가국, 실행가능성 지표는 1단계 TOP10 안에서 계산합니다.</p>
     </section>
