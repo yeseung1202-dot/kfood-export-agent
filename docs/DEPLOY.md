@@ -20,7 +20,7 @@ Settings → Pages → Source: Deploy from a branch → `main` / `/ (root)` → 
 → `https://<아이디>.github.io/<저장소>/` 에서 index.html이 열림
 
 ## 3. Streamlit Community Cloud (데모) — 2026-11-01 하지 않기로 함
-심사위원이 잠든 앱을 깨우다 기다리게 될 수 있어 설명 페이지만 배포. 데모 버튼은 LINKS.demo를 비워 숨김, 코드 저장소 버튼만 표시.
+심사위원이 잠든 앱을 깨우다 기다리게 될 수 있어 Streamlit 대신 정적 웹 데모(demo/, build_demo.py)로 대체. LINKS.demo = "demo/".
 
 share.streamlit.io → GitHub 로그인 → New app → 저장소 / `main` / `app.py`
 - app.py는 API 키 없이 data/*.csv만 읽음. report.py(LLM)는 배포에서 실행하지 않음

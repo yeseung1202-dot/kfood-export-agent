@@ -17,7 +17,7 @@
   --sheet: #faf7f5;      /* 카드·표 면 */
   --ink: #222222;
   --ink-2: #54585a;
-  --muted: #8a8380;
+  --muted: #67605c;
   --rule: #e6dfda;
   --red: #da291c;        /* 브랜드 레드: 강조·상승 */
   --choco: #4a2a1d;      /* 초콜릿: 하락·TOP3 막대 */
@@ -502,9 +502,9 @@ footer.foot .inner { padding-block: 32px 40px; display: grid; gap: 12px; }
     </div>
     <p class="prose">TOP3를 고른 데서 멈추지 않고, 나라별 규제를 읽어 진입 제품까지 정했습니다. 영국은 인지도를 광고로 쌓아야 하는 시장인데('Pepero' 검색 관심도 2/100), 일반 과자는 광고가 막혀 있습니다.</p>
     <ol class="checks">
-      <li><span class="k">1</span><span><b>규제</b> · 영국은 2026년 1월 5일부터 '덜 건강한 식품'의 TV 광고(오후 9시 이전)와 온라인 유료 광고를 금지했습니다. 매장 입구·계산대 같은 주요 위치 진열은 2022년 10월부터 제한하고 있습니다.</span></li>
+      <li><span class="k">1</span><span><b>규제</b> · 영국은 2026년 1월 5일부터 '덜 건강한 식품'의 TV 광고(오후 9시 이전)와 온라인 유료 광고를 금지했습니다. 잉글랜드는 매장 입구·계산대 같은 주요 위치 진열을 2022년 10월부터 제한하고 있습니다.</span></li>
       <li><span class="k">2</span><span><b>대상 기준</b> · 과자·초콜릿, 아이스크림, 케이크, 비스킷 등 13개 범주 가운데 <b>영양점수 4점 이상</b>인 제품만 대상입니다. 같은 범주라도 4점 미만이면 광고와 진열 제한을 받지 않습니다.</span></li>
-      <li><span class="k">3</span><span><b>제안</b> · 일반 제품 대신 무설탕 ZERO로 진입합니다. ZERO는 롯데마트 서울역점 외국인 판매 상위 5위에 3종(과일젤리·크런치 초코볼·초코케이크)이 모두 들었고(롯데멤버스 분석, 2025.4~2026.5), 2025년 1분기 수출이 전년보다 4배 늘었습니다.</span></li>
+      <li><span class="k">3</span><span><b>제안</b> · 일반 제품 대신 무설탕 ZERO로 진입합니다. ZERO는 롯데마트 서울역점 외국인 판매 상위 5위에 3종(과일젤리·크런치 초코볼·초코케이크)이 모두 들었고(롯데멤버스 분석, 2025.4~2026.5), 2025년 1분기 수출이 전년 동기의 4배로 늘었습니다.</span></li>
     </ol>
     <p class="note">무설탕이어도 초콜릿류는 열량과 포화지방 때문에 4점 이상일 수 있습니다. 그래서 제품별 영양성분으로 점수를 계산해 진입 제품을 확정하는 기능을 본선에서 붙입니다.</p>
   </section>
@@ -549,7 +549,7 @@ footer.foot .inner { padding-block: 32px 40px; display: grid; gap: 12px; }
       <a class="btn" id="link-repo" href="#" target="_blank" rel="noopener">코드 저장소</a>
     </div>
     <p class="cap">데이터: 관세청 품목별 국가별 수출입실적 · UN Comtrade · World Bank · IMF World Economic Outlook · Google Trends · OECD Country Risk Classification · WITS. 2026년 10월 말 수집.</p>
-    <p class="cap">영국 규제: The Advertising (Less Healthy Food Definitions and Exemptions) Regulations 2024(영양점수 4점 이상, 13개 범주) · 영국 정부 안내(광고 제한 2026-01-05 시행, 진열 제한 2022-10-01 시행). ZERO: 아시아경제 2026-07-20(롯데멤버스 L.POINT 분석) · 토요경제 2025-04-09(수출 4배).</p>
+    <p class="cap">영국 규제: The Advertising (Less Healthy Food Definitions and Exemptions) Regulations 2024(영양점수 4점 이상, 13개 범주) · 영국 정부 안내(광고 제한 2026-01-05 시행, 잉글랜드 진열 제한 2022-10-01 시행). ZERO: 아시아경제 2026-07-20(롯데멤버스 L.POINT 분석) · 토요경제 2025-04-09(수출 4배).</p>
     <p class="cap">LOTTE AX Challenge 2026 예선 제출용 개인 참가작입니다. 롯데의 공식 자료가 아니며, 내부 데이터 자리의 값은 가상 샘플입니다. 상단 이미지는 코드로 그린 일러스트입니다.</p>
   </div>
 </footer>
@@ -558,7 +558,7 @@ footer.foot .inner { padding-block: 32px 40px; display: grid; gap: 12px; }
 
 <script>
 // 배포 후 주소를 넣으면 버튼이 켜진다. 비어 있으면 버튼을 숨긴다.
-const LINKS = { demo: "", repo: "https://github.com/yeseung1202-dot/kfood-export-agent" };
+const LINKS = { demo: "demo/", repo: "https://github.com/yeseung1202-dot/kfood-export-agent" };
 
 // data/scores.csv · data/manual/feasibility.csv · data/sensitivity.csv 에서 코드로 뽑은 값
 const DATA = {"slope": [{"c": "싱가포르", "s1": 1, "fr": 1, "s1v": 66.1, "fe": 75.9, "fv": 69.1, "lt": 7.5, "lpi": 4.3, "oecd": 0, "base": "한국(부산)"}, {"c": "몽골", "s1": 2, "fr": 7, "s1v": 60.4, "fe": 29.6, "fv": 51.2, "lt": 12.1, "lpi": 2.5, "oecd": 6, "base": "한국(부산)"}, {"c": "말레이시아", "s1": 3, "fr": 6, "s1v": 60.2, "fe": 41.7, "fv": 54.6, "lt": 8.1, "lpi": 3.6, "oecd": 2, "base": "한국(부산)"}, {"c": "영국", "s1": 4, "fr": 3, "s1v": 58.1, "fe": 61.1, "fv": 59.0, "lt": 32.4, "lpi": 3.7, "oecd": 0, "base": "한국(부산)"}, {"c": "아랍에미리트", "s1": 5, "fr": 5, "s1v": 58.1, "fe": 49.1, "fv": 55.4, "lt": 6.4, "lpi": 4.0, "oecd": 2, "base": "인도(하리아나 빼빼로 라인)"}, {"c": "네덜란드", "s1": 6, "fr": 2, "s1v": 57.3, "fe": 63.0, "fv": 59.0, "lt": 32.7, "lpi": 4.1, "oecd": 0, "base": "한국(부산)"}, {"c": "뉴질랜드", "s1": 7, "fr": 4, "s1v": 57.0, "fe": 60.2, "fv": 57.9, "lt": 20.0, "lpi": 3.6, "oecd": 0, "base": "한국(부산)"}, {"c": "카타르", "s1": 8, "fr": 8, "s1v": 54.7, "fe": 39.8, "fv": 50.2, "lt": 7.0, "lpi": 3.5, "oecd": 2, "base": "인도(하리아나 빼빼로 라인)"}, {"c": "우즈베키스탄", "s1": 9, "fr": 9, "s1v": 52.0, "fe": 45.4, "fv": 50.0, "lt": 3.0, "lpi": 2.6, "oecd": 5, "base": "카자흐스탄(알마티 공장)"}, {"c": "쿠웨이트", "s1": 10, "fr": 10, "s1v": 51.6, "fe": 34.3, "fv": 46.4, "lt": 7.8, "lpi": 3.2, "oecd": 2, "base": "인도(하리아나 빼빼로 라인)"}], "stab": [{"c": "싱가포르", "v": 97.5, "fr": 1}, {"c": "영국", "v": 62.1, "fr": 3}, {"c": "네덜란드", "v": 56.2, "fr": 2}, {"c": "뉴질랜드", "v": 36.5, "fr": 4}, {"c": "말레이시아", "v": 20.6, "fr": 6}, {"c": "아랍에미리트", "v": 17.4, "fr": 5}, {"c": "몽골", "v": 3.4, "fr": 7}, {"c": "카타르", "v": 3.2, "fr": 8}, {"c": "우즈베키스탄", "v": 2.4, "fr": 9}]};

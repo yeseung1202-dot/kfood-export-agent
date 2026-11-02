@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>K-제과 유망국 데모</title>
+<meta name="description" content="가중치를 바꾸면 브라우저에서 바로 다시 계산하는 K-제과 수출 유망국 발굴 에이전트 데모 (서버·설치 없음)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Black+Han+Sans&family=Gothic+A1:wght@400;500;700;800&display=swap">
+<style>
+/* Layout: 왼쪽 조작판(데스크톱 고정) + 오른쪽 결과. 설명 페이지(../)와 같은 롯데웰푸드 톤 */
+:root {
+  --paper: #ffffff; --band: #efe7e2; --sheet: #faf7f5; --ink: #222222; --ink-2: #54585a; --muted: #67605c;
+  --rule: #e6dfda; --red: #da291c; --choco: #4a2a1d; --biscuit: #d6b380; --link: #b3211a; --tag-bg: #f7ebe8;
+  --warn: #8a5a00; --warn-bg: #fff4d6;
+  --font-display: "Black Han Sans", "Gothic A1", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-body: "Gothic A1", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #161211; --band: #241c19; --sheet: #1e1816; --ink: #f2ece8; --ink-2: #c2b8b2; --muted: #958b86;
+    --rule: #352b27; --red: #f0493c; --choco: #b07a5c; --biscuit: #6d5a44; --link: #ff8a7f; --tag-bg: #2e1d1a;
+    --warn: #f3c969; --warn-bg: #3a2e12; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #161211; --band: #241c19; --sheet: #1e1816; --ink: #f2ece8; --ink-2: #c2b8b2; --muted: #958b86;
+  --rule: #352b27; --red: #f0493c; --choco: #b07a5c; --biscuit: #6d5a44; --link: #ff8a7f; --tag-bg: #2e1d1a;
+  --warn: #f3c969; --warn-bg: #3a2e12; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.65; word-break: keep-all; overflow-wrap: break-word; }
+[hidden] { display: none !important; }
+.gut { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.inner { max-width: 1200px; margin: 0 auto; }
+h1, h2, h3 { margin: 0; line-height: 1.3; text-wrap: balance; }
+h1, h2 { font-family: var(--font-display); font-weight: 400; }
+h1 { font-size: clamp(26px, 4vw, 38px); }
+h2 { font-size: 22px; }
+h3 { font-size: 15px; font-weight: 800; }
+p { margin: 0; }
+a { color: var(--link); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.data { font-family: var(--font-data); font-variant-numeric: tabular-nums; }
+.eyebrow { font-family: var(--font-data); font-size: 12px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--red); }
+.cap { font-size: 13px; color: var(--muted); }
+
+header.band { background: var(--band); }
+header.band .inner { padding-block: 28px 24px; display: grid; gap: 8px; }
+header.band .sub { color: var(--ink-2); max-width: 70ch; }
+
+.layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 32px; padding-block: 28px 64px; align-items: start; }
+@media (max-width: 880px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+
+/* 조작판 */
+.panel { position: sticky; top: 16px; display: grid; gap: 22px; background: var(--sheet); padding: 20px; border-radius: 4px; }
+@media (max-width: 880px) { .panel { position: static; } }
+.panel h3 { font-size: 13px; color: var(--ink-2); font-weight: 700; }
+.seg { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+.seg button { font: inherit; font-size: 14px; padding: 9px 6px; border: 0; background: var(--paper); color: var(--ink-2); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--red); color: #fff; font-weight: 700; }
+.slider { display: grid; gap: 4px; }
+.slider label { display: flex; justify-content: space-between; gap: 8px; font-size: 14px; }
+.slider output { font-family: var(--font-data); font-size: 13px; color: var(--ink-2); }
+input[type="range"] { width: 100%; accent-color: var(--red); }
+.toggle { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; }
+.toggle input { margin-top: 4px; accent-color: var(--red); width: 16px; height: 16px; }
+.btn { font: inherit; font-size: 14px; font-weight: 700; padding: 9px 14px; border-radius: 3px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); cursor: pointer; }
+.stack { display: grid; gap: 14px; }
+
+/* 결과 */
+.main { display: grid; gap: 24px; min-width: 0; }
+.alert { padding: 12px 16px; border-radius: 3px; font-size: 14px; background: var(--warn-bg); color: var(--ink); border-left: 3px solid var(--warn); }
+.alert.err { background: var(--tag-bg); border-left-color: var(--red); }
+.top3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 2px solid var(--ink); }
+.pick { padding: 16px 18px 4px; border-left: 1px solid var(--rule); display: grid; gap: 4px; min-width: 0; }
+.pick:first-child { border-left: 0; padding-left: 0; }
+.pick .rank { font-family: var(--font-data); font-size: 13px; font-weight: 600; color: var(--red); }
+.pick .name { font-family: var(--font-display); font-size: 28px; }
+.pick .nums { font-family: var(--font-data); font-size: 13px; color: var(--ink-2); }
+.pick .nums b { color: var(--ink); font-size: 17px; }
+.moved-up { color: var(--red); } .moved-down { color: var(--choco); }
+@media (max-width: 560px) { .top3 { grid-template-columns: 1fr; } .pick { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); } .pick:first-child { border-top: 0; } }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--rule); }
+.tabs button { font: inherit; font-size: 14px; padding: 10px 14px; border: 0; background: none; color: var(--ink-2); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--ink); font-weight: 800; border-bottom-color: var(--red); }
+
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--rule); vertical-align: middle; }
+th { font-family: var(--font-data); font-size: 12px; font-weight: 500; color: var(--muted); background: var(--sheet); white-space: nowrap; }
+td.num { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.c { font-weight: 700; white-space: nowrap; }
+.bar { display: inline-grid; grid-template-columns: 38px 64px; gap: 6px; align-items: center; }
+.bar i { display: block; height: 6px; border-radius: 3px; background: var(--rule); position: relative; overflow: hidden; }
+.bar i b { position: absolute; inset: 0 auto 0 0; background: var(--biscuit); border-radius: 3px; }
+.bar.hi i b { background: var(--red); }
+.flag { font-size: 12px; color: var(--muted); }
+#rank-table td.num, #rank-table th { min-width: 0; }
+#rank-table { min-width: 760px; }
+
+.compare { max-width: 520px; }
+.compare td.same { color: var(--muted); }
+
+.drv { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+@media (max-width: 720px) { .drv { grid-template-columns: 1fr; } }
+.drv ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.drv li { background: var(--sheet); padding: 12px 14px; border-radius: 3px; display: grid; gap: 2px; }
+.drv .lab { font-weight: 700; font-size: 14px; }
+.drv .val { font-family: var(--font-data); font-size: 15px; }
+.drv .pc { font-family: var(--font-data); font-size: 12px; color: var(--muted); }
+.drv h3.up { color: var(--red); } .drv h3.down { color: var(--choco); }
+select { font: inherit; font-size: 15px; padding: 8px 10px; border: 1px solid var(--rule); border-radius: 3px; background: var(--paper); color: var(--ink); }
+
+.report { max-width: 78ch; font-size: 15px; }
+.report h1 { font-size: 26px; margin: 8px 0 12px; }
+.report h2 { font-size: 21px; margin: 28px 0 8px; }
+.report h3 { margin: 18px 0 6px; }
+.report p, .report ul, .report ol { margin: 0 0 12px; }
+.report table { font-size: 13px; margin: 8px 0 16px; display: block; overflow-x: auto; }
+.report details { background: var(--sheet); padding: 10px 14px; border-radius: 3px; margin: 8px 0 16px; }
+.report code { font-family: var(--font-data); font-size: 13px; }
+footer { border-top: 1px solid var(--rule); }
+footer .inner { padding-block: 20px 32px; display: grid; gap: 6px; }
+</style>
+</head>
+<body>
+
+<header class="band gut">
+  <div class="inner">
+    <p class="eyebrow">LOTTE AX Challenge 2026 · 롯데웰푸드 과제 · 데모</p>
+    <h1>K-제과 수출 유망국 발굴 에이전트</h1>
+    <p class="sub">가중치를 바꾸면 이 브라우저에서 바로 다시 계산합니다. 서버나 설치 없이 저장소의 score.py와 같은 계산식으로 돌아갑니다. <a href="../">설명 페이지로 돌아가기</a></p>
+  </div>
+</header>
+
+<div class="gut">
+<div class="inner layout">
+
+  <aside class="panel" aria-label="설정">
+    <div class="stack">
+      <h3 id="track-label">트랙</h3>
+      <div class="seg" role="group" aria-labelledby="track-label">
+        <button type="button" id="track-new" data-track="new" aria-pressed="true">신규 개척형</button>
+        <button type="button" id="track-expand" data-track="expand" aria-pressed="false">기존 주력 확대형</button>
+      </div>
+      <p class="cap">2025년 한국 제과 수출 2,000만 달러 이상 = 기존 주력시장</p>
+    </div>
+    <div class="stack">
+      <h3>1단계 축 가중치</h3>
+      <div class="slider"><label for="w0">성장성 <output id="w0-out" class="data"></output></label><input type="range" id="w0" min="0" max="1" step="0.05" value="0.333"></div>
+      <div class="slider"><label for="w1">트렌드 <output id="w1-out" class="data"></output></label><input type="range" id="w1" min="0" max="1" step="0.05" value="0.333"></div>
+      <div class="slider"><label for="w2">수출입 <output id="w2-out" class="data"></output></label><input type="range" id="w2" min="0" max="1" step="0.05" value="0.333"></div>
+    </div>
+    <div class="stack">
+      <h3>2단계</h3>
+      <div class="slider"><label for="alpha">실행가능성 비중 α <output id="alpha-out" class="data"></output></label><input type="range" id="alpha" min="0" max="0.6" step="0.05" value="0.3"></div>
+      <p class="cap">최종 = (1 − α) × 1단계 + α × 실행가능성</p>
+    </div>
+    <label class="toggle" for="sample"><input type="checkbox" id="sample"><span>롯데 내부 데이터 자리에 <b>가상 샘플</b> 넣어 보기<br><span class="cap">국가별 영업이익률. 본선에서는 실데이터 파일만 넣으면 반영</span></span></label>
+    <button type="button" class="btn" id="reset">기본값으로</button>
+  </aside>
+
+  <main class="main">
+    <p class="alert" id="sample-warn" hidden>가상 샘플 데이터(롯데 내부 영업이익률)가 반영된 결과입니다. 실제 분석 결과가 아닙니다.</p>
+    <p class="alert err" id="zero-warn" hidden>가중치 합이 0입니다. 하나 이상 올려 주세요.</p>
+
+    <section aria-label="TOP3">
+      <div class="top3" id="top3"></div>
+    </section>
+
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" id="tab-rank" aria-controls="p-rank" aria-selected="true">순위</button>
+      <button type="button" role="tab" id="tab-why" aria-controls="p-why" aria-selected="false">근거·출처</button>
+      <button type="button" role="tab" id="tab-stab" aria-controls="p-stab" aria-selected="false">안정성 검증</button>
+      <button type="button" role="tab" id="tab-gate" aria-controls="p-gate" aria-selected="false">탈락국</button>
+      <button type="button" role="tab" id="tab-report" aria-controls="p-report" aria-selected="false">리포트</button>
+    </div>
+
+    <section role="tabpanel" id="p-rank" aria-labelledby="tab-rank" class="stack">
+      <div class="table-wrap"><table id="rank-table"></table></div>
+      <h3>1단계(과제 3축만) → 최종(+ 롯데 실행가능성)</h3>
+      <div class="table-wrap compare"><table id="compare"></table></div>
+    </section>
+
+    <section role="tabpanel" id="p-why" aria-labelledby="tab-why" class="stack" hidden>
+      <label class="cap" for="country">국가 (최종 TOP10)</label>
+      <select id="country"></select>
+      <p id="why-head"></p>
+      <div class="drv">
+        <div class="stack"><h3 class="up">점수를 올린 지표</h3><ol id="up"></ol></div>
+        <div class="stack"><h3 class="down">점수를 깎은 지표</h3><ol id="down"></ol></div>
+      </div>
+      <p class="cap">백분위는 1단계 지표는 트랙 내 평가국, 실행가능성 지표는 1단계 TOP10 안에서 계산합니다.</p>
+    </section>
+
+    <section role="tabpanel" id="p-stab" aria-labelledby="tab-stab" class="stack" hidden>
+      <p>축 가중치(Dirichlet), α(0.1~0.5), 지표 1개 제외를 무작위로 바꿔 2,000회 다시 계산한 결과입니다. 기본 설정 기준이며 슬라이더와 무관합니다(<span class="data">python score.py</span>로 갱신).</p>
+      <div class="table-wrap"><table id="stab-table"></table></div>
+    </section>
+
+    <section role="tabpanel" id="p-gate" aria-labelledby="tab-gate" class="stack" hidden>
+      <p>평가 전에 걸러낸 나라와 사유입니다. 롯데 생산거점이 있는 나라는 후보가 아니라 공급거점으로 씁니다.</p>
+      <div class="table-wrap"><table id="gate-table"></table></div>
+    </section>
+
+    <section role="tabpanel" id="p-report" aria-labelledby="tab-report" class="stack" hidden>
+      <p class="cap">신규 개척형 기본 설정 기준 리포트입니다. HyperCLOVA X가 문장을 쓰고 코드가 숫자를 넣은 뒤, 사람이 해석 오류를 고친 검토 수정본입니다.</p>
+      <div class="report" id="report"></div>
+    </section>
+  </main>
+
+</div>
+</div>
+
+<footer class="gut">
+  <div class="inner">
+    <p class="cap" id="built"></p>
+    <p class="cap">LOTTE AX Challenge 2026 예선 제출용 개인 참가작입니다. 롯데의 공식 자료가 아니며, 내부 데이터 자리의 값은 가상 샘플입니다. 코드: <a href="https://github.com/yeseung1202-dot/kfood-export-agent">github.com/yeseung1202-dot/kfood-export-agent</a></p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="engine.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+<script>
+const D = DEMO_DATA;
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const isNum = v => v !== null && v !== undefined && !Number.isNaN(v);
+
+// 지표 이름·값 표기 (report.py FMT와 같은 규칙)
+const NAME = {
+  imp_cagr: "제과 수입시장 성장률", imf_gdp_growth_fcst_26_30: "GDP 성장 전망(2026~2030 평균)", imf_gdp_pc_2026: "1인당 GDP",
+  "wb_0_14세비중": "0~14세 인구 비중", "wb_도시화율": "도시화율", trend_korean_food: "'한국 요리' 검색 관심도",
+  trend_korean_snacks: "'korean snack' 검색 관심도", trend_pepero: "'Pepero' 검색 관심도", kofice_hansik_favor: "한식 호감도",
+  kr_exp_cagr_21_25: "한국 제과 수출 증가율(연평균)", kr_exp_ytd_growth_26: "한국 제과 수출 2026년 1~9월 증감",
+  gap_jp_kr: "일본 대비 한국 점유율 여백", lead_time_days: "롯데 거점 기준 리드타임", lpi_2023: "물류성과지수(LPI)",
+  tariff_hs1905_pct: "HS1905 관세", halal_required: "할랄 인증", sugar_tax: "과자 열량세", oecd_risk: "OECD 국가위험",
+  internal_margin_pct: "롯데 영업이익률(가상 샘플)",
+};
+const PCT = new Set(["imp_cagr", "kr_exp_cagr_21_25", "kr_exp_ytd_growth_26"]);
+const g = v => String(+v.toPrecision(6));
+const FMT = {
+  gap_jp_kr: v => (v >= 0 ? "+" : "") + (v * 100).toFixed(1) + "%p",
+  imf_gdp_growth_fcst_26_30: v => v.toFixed(1) + "%", imf_gdp_pc_2026: v => Math.round(v).toLocaleString("ko-KR") + "달러",
+  "wb_0_14세비중": v => v.toFixed(1) + "%", "wb_도시화율": v => v.toFixed(1) + "%",
+  trend_korean_food: v => g(v) + "/100", trend_korean_snacks: v => g(v) + "/100", trend_pepero: v => g(v) + "/100",
+  lead_time_days: v => v.toFixed(1) + "일", lpi_2023: v => v.toFixed(1) + "점", tariff_hs1905_pct: v => g(v) + "%",
+  halal_required: v => (v ? "필요" : "불필요"), sugar_tax: v => (v ? "있음" : "없음"), oecd_risk: v => v.toFixed(0) + "등급",
+  internal_margin_pct: v => g(v) + "%",
+};
+const fmt = (col, v) => PCT.has(col) ? (v * 100).toFixed(1) + "%" : (FMT[col] || g)(v);
+const f1 = v => (isNum(v) ? v.toFixed(1) : "–");
+const bar = v => isNum(v) ? `<span class="bar${v >= 60 ? " hi" : ""}"><span class="data">${v.toFixed(1)}</span><i><b style="width:${Math.max(0, Math.min(100, v))}%"></b></i></span>` : "–";
+
+const DEFAULT = { track: "new", w: [1 / 3, 1 / 3, 1 / 3], alpha: D.alpha, sample: false };
+const st = { ...DEFAULT, w: [...DEFAULT.w], tab: "rank", country: null };
+let rows = [];
+
+function readControls() {
+  st.w = [0, 1, 2].map(i => +$("w" + i).value);
+  st.alpha = +$("alpha").value;
+  st.sample = $("sample").checked;
+}
+
+function render() {
+  const sum = st.w.reduce((a, b) => a + b, 0);
+  [0, 1, 2].forEach(i => { $("w" + i + "-out").textContent = sum ? Math.round(st.w[i] / sum * 100) + "%" : "0%"; });
+  $("alpha-out").textContent = st.alpha.toFixed(2);
+  $("sample-warn").hidden = !st.sample;
+  $("zero-warn").hidden = sum > 0;
+  for (const t of ["new", "expand"]) $("track-" + t).setAttribute("aria-pressed", String(st.track === t));
+  if (!sum) return;
+
+  rows = KScore.score(D, st.w.map(x => x / sum), st.alpha, st.track, st.sample);
+  const top = rows.filter(r => r.finalRank !== null).sort((a, b) => a.finalRank - b.finalRank);
+  const s1 = rows.filter(r => r.stage1Rank !== null).sort((a, b) => a.stage1Rank - b.stage1Rank);
+
+  $("top3").innerHTML = top.slice(0, 3).map(r => {
+    const d = r.stage1Rank - r.finalRank;
+    const mv = d > 0 ? `<span class="moved-up">▲${d}</span>` : d < 0 ? `<span class="moved-down">▼${-d}</span>` : "";
+    return `<div class="pick"><span class="rank">${r.finalRank}위</span><span class="name">${esc(r.country)}</span>
+      <span class="nums"><b>${r.final.toFixed(1)}</b>점 · 1단계 ${r.stage1Rank}위 ${mv}</span></div>`;
+  }).join("");
+
+  $("rank-table").innerHTML = `<thead><tr><th>순위</th><th>국가</th>${D.axes.map(a => `<th>${a}</th>`).join("")}<th>1단계</th><th>실행가능성</th><th>최종</th><th>데이터 한계</th></tr></thead><tbody>` +
+    top.map(r => `<tr><td class="num">${r.finalRank}</td><td class="c">${esc(r.country)}</td>${D.axes.map(a => `<td class="num">${f1(r.axes[a])}</td>`).join("")}
+      <td>${bar(r.stage1)}</td><td>${bar(r.feas)}</td><td>${bar(r.final)}</td><td class="flag">${esc(r.flags)}</td></tr>`).join("") + "</tbody>";
+
+  const n = Math.min(D.topN, top.length);
+  $("compare").innerHTML = "<thead><tr><th>순위</th><th>1단계</th><th>최종</th></tr></thead><tbody>" +
+    Array.from({ length: n }, (_, i) => `<tr><td class="num">${i + 1}</td><td>${esc(s1[i].country)}</td>` +
+      `<td class="c${s1[i].country === top[i].country ? " same" : ""}">${esc(top[i].country)}</td></tr>`).join("") + "</tbody>";
+
+  const names = top.map(r => r.country);
+  if (!names.includes(st.country)) st.country = names[0];
+  $("country").innerHTML = names.map(c => `<option${c === st.country ? " selected" : ""}>${esc(c)}</option>`).join("");
+  renderWhy();
+
+  const sens = D.sens[st.track];
+  $("stab-table").innerHTML = `<thead><tr><th>국가</th><th>TOP3 진입률</th><th>1위 비율</th><th>TOP10 진입률</th><th>안정(≥${Math.round(D.stableRate * 100)}%)</th></tr></thead><tbody>` +
+    sens.map(s => `<tr><td class="c">${esc(s.country)}</td><td>${bar(s.top3 * 100)}</td><td class="num">${(s.rank1 * 100).toFixed(1)}%</td><td class="num">${(s.top10 * 100).toFixed(1)}%</td><td>${s.top3 >= D.stableRate ? "안정" : "경합"}</td></tr>`).join("") + "</tbody>";
+
+  const gated = rows.filter(r => r.gate);
+  $("gate-table").innerHTML = "<thead><tr><th>국가</th><th>탈락 사유</th></tr></thead><tbody>" +
+    gated.map(r => `<tr><td class="c">${esc(r.country)}</td><td>${esc(r.gate)}</td></tr>`).join("") + "</tbody>";
+}
+
+function renderWhy() {
+  const r = rows.find(x => x.country === st.country);
+  if (!r) return;
+  $("why-head").innerHTML = `<b>${esc(r.country)}</b> · 최종 <span class="data">${r.final.toFixed(1)}</span>점 · ${r.finalRank}위` + (r.flags ? ` · <span class="flag">${esc(r.flags)}</span>` : "");
+  const d = KScore.drivers(D, r);
+  const li = x => `<li><span class="lab">${esc(NAME[x.col] || x.col)} <span class="cap">· ${esc(x.axis)}</span></span>
+    <span class="val">${esc(fmt(x.col, x.value))}</span><span class="pc">백분위 ${x.pct.toFixed(1)}</span>
+    <span class="cap">${esc(x.source)}${x.year ? ", " + esc(x.year) : ""}</span></li>`;
+  $("up").innerHTML = d.up.map(li).join("");
+  $("down").innerHTML = d.down.map(li).join("");
+}
+
+function setTab(t) {
+  st.tab = t;
+  for (const k of ["rank", "why", "stab", "gate", "report"]) {
+    $("tab-" + k).setAttribute("aria-selected", String(k === t));
+    $("p-" + k).hidden = k !== t;
+  }
+}
+
+// 이벤트
+for (const id of ["w0", "w1", "w2", "alpha", "sample"]) $(id).addEventListener("input", () => { readControls(); render(); });
+for (const t of ["new", "expand"]) $("track-" + t).addEventListener("click", () => { st.track = t; render(); });
+$("country").addEventListener("change", e => { st.country = e.target.value; renderWhy(); });
+for (const k of ["rank", "why", "stab", "gate", "report"]) $("tab-" + k).addEventListener("click", () => setTab(k));
+$("reset").addEventListener("click", () => {
+  [0, 1, 2].forEach(i => { $("w" + i).value = 0.333; });
+  $("alpha").value = D.alpha; $("sample").checked = false; st.track = "new";
+  readControls(); render();
+});
+
+$("report").innerHTML = window.marked ? marked.parse(D.report) : `<pre style="white-space:pre-wrap">${esc(D.report)}</pre>`;
+$("built").textContent = `데이터 기준: ${D.built} 생성 · 관세청 · UN Comtrade · World Bank · IMF WEO · Google Trends · OECD · WITS`;
+readControls();
+render();
+</script>
+</body>
+</html>

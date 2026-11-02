@@ -64,6 +64,15 @@ streamlit run app.py            # 트랙 선택·가중치 슬라이더·근거�
 - 사람이 해석 오류를 고친 **검토 수정본**은 `docs/reports/top3_report_final.md` (앱은 이 파일을 우선 표시). report.py를 다시 돌려도 수정본은 그대로이므로, 점수가 바뀌면 다시 검토할 것
 - 롯데 내부 데이터 슬롯: `data/internal/internal.csv`(country, internal_margin_pct, internal_margin_pct_src)가 있으면 자동 반영. `sample_internal.csv`는 **가상 샘플**로, 앱 토글을 켤 때만 쓰임
 
+## 웹 데모 (demo/, 설치 없음)
+
+```bash
+python build_demo.py   # demo/data.js 재생성 + node가 있으면 JS 계산을 score.py와 대조
+```
+
+- `demo/engine.js`는 score.py의 score()·drivers()를 브라우저로 옮긴 것. GitHub Pages에서 `/demo/`로 열림
+- 점수나 리포트가 바뀌면 `python build_demo.py` 후 커밋. 롯데 실데이터(internal.csv)는 데이터에 넣지 않음
+
 ## 알아둘 점
 
 - HS코드: 1905 비스킷류(빼빼로), 1806 초콜릿, 2105 아이스크림, 1704 설탕과자
