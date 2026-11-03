@@ -56,7 +56,7 @@ FMT = {
     "imf_gdp_pc_2026": lambda v: f"{v:,.0f}달러",
     "wb_0_14세비중": lambda v: f"{v:.1f}%",
     "wb_도시화율": lambda v: f"{v:.1f}%",
-    **{t: (lambda v: f"{v:g}/100") for t in ("trend_korean_food", "trend_korean_snacks", "trend_pepero")},
+    **{t: (lambda v: f"{v:g}/100") for t in ("trend_korean_food", "trend_korean_snacks", "trend_pepero", "trend_kpop")},
     "lead_time_days": lambda v: f"{v:.1f}일",
     "lpi_2023": lambda v: f"{v:.1f}점",
     "tariff_hs1905_pct": lambda v: f"{v:g}%",

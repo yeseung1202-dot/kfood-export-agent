@@ -1,7 +1,7 @@
 {
   "싱가포르": {
     "final_rank": 1,
-    "final": 69.1,
+    "final": 69.7,
     "flags": "재수출 허브(수입액 과대 가능)",
     "up": [
       {
@@ -56,9 +56,66 @@
       }
     ]
   },
-  "네덜란드": {
+  "영국": {
     "final_rank": 2,
-    "final": 59.0,
+    "final": 60.5,
+    "flags": "",
+    "up": [
+      {
+        "indicator": "kr_exp_cagr_21_25",
+        "axis": "수출입",
+        "value": 0.2002749150212845,
+        "percentile": 83.3,
+        "source": "관세청 한국 제과류 수출액 CAGR",
+        "year": "2021→2025"
+      },
+      {
+        "indicator": "tariff_hs1905_pct",
+        "axis": "실행가능성",
+        "value": 0.0,
+        "percentile": 83.3,
+        "source": "WITS TRAINS MFN HS190590 단순평균 2023 MFN 8% → 한-영 FTA(2021 발효) 협정세율 0% 적용(검토 필요)",
+        "year": "2026"
+      },
+      {
+        "indicator": "oecd_risk",
+        "axis": "실행가능성",
+        "value": 0.0,
+        "percentile": 83.3,
+        "source": "OECD Country Risk Classification (2026-10-16 기준, docs/sources/oecd_country_risk_classification_current.pdf) — 고소득 OECD국 미분류(주석 6) → 0 처리",
+        "year": "2026"
+      }
+    ],
+    "down": [
+      {
+        "indicator": "imf_gdp_growth_fcst_26_30",
+        "axis": "성장성",
+        "value": 1.4,
+        "percentile": 14.3,
+        "source": "IMF WEO 실질GDP성장률 전망 평균",
+        "year": "2026~2030"
+      },
+      {
+        "indicator": "trend_pepero",
+        "axis": "트렌드",
+        "value": 2.0,
+        "percentile": 16.7,
+        "source": "Google Trends 'Pepero'(검색어) 국가별 관심도",
+        "year": "2025-10-29~2026-10-29"
+      },
+      {
+        "indicator": "lead_time_days",
+        "axis": "실행가능성",
+        "value": 32.4,
+        "percentile": 22.2,
+        "source": "Fluent Cargo 항로 해상거리 부산–로테르담 10,994nm 기준 펠릭스토우 약 10,900nm(추정) ÷ 14노트",
+        "year": "2026"
+      }
+    ]
+  },
+  "네덜란드": {
+    "final_rank": 3,
+    "final": 58.8,
     "flags": "재수출 허브(수입액 과대 가능)",
     "up": [
       {
@@ -88,14 +145,6 @@
     ],
     "down": [
       {
-        "indicator": "lead_time_days",
-        "axis": "실행가능성",
-        "value": 32.7,
-        "percentile": 0.0,
-        "source": "Fluent Cargo 항로 해상거리 부산–로테르담 10,994nm(수에즈 경유, 희망봉 우회 시 +약 10일) ÷ 14노트",
-        "year": "2026"
-      },
-      {
         "indicator": "imf_gdp_growth_fcst_26_30",
         "axis": "성장성",
         "value": 1.34,
@@ -104,61 +153,12 @@
         "year": "2026~2030"
       },
       {
-        "indicator": "trend_pepero",
-        "axis": "트렌드",
-        "value": 2.0,
-        "percentile": 16.7,
-        "source": "Google Trends 'Pepero'(검색어) 국가별 관심도",
-        "year": "2025-10-29~2026-10-29"
-      }
-    ]
-  },
-  "영국": {
-    "final_rank": 3,
-    "final": 59.0,
-    "flags": "",
-    "up": [
-      {
-        "indicator": "kr_exp_cagr_21_25",
-        "axis": "수출입",
-        "value": 0.2002749150212845,
-        "percentile": 83.3,
-        "source": "관세청 한국 제과류 수출액 CAGR",
-        "year": "2021→2025"
-      },
-      {
-        "indicator": "oecd_risk",
-        "axis": "실행가능성",
-        "value": 0.0,
-        "percentile": 83.3,
-        "source": "OECD Country Risk Classification (2026-10-16 기준, docs/sources/oecd_country_risk_classification_current.pdf) — 고소득 OECD국 미분류(주석 6) → 0 처리",
-        "year": "2026"
-      },
-      {
-        "indicator": "imf_gdp_pc_2026",
-        "axis": "성장성",
-        "value": 61108.378,
-        "percentile": 81.0,
-        "source": "IMF WEO 1인당 GDP(USD)",
-        "year": "2026"
-      }
-    ],
-    "down": [
-      {
         "indicator": "lead_time_days",
         "axis": "실행가능성",
-        "value": 32.4,
+        "value": 32.7,
         "percentile": 11.1,
-        "source": "Fluent Cargo 항로 해상거리 부산–로테르담 10,994nm 기준 펠릭스토우 약 10,900nm(추정) ÷ 14노트",
+        "source": "Fluent Cargo 항로 해상거리 부산–로테르담 10,994nm(수에즈 경유, 희망봉 우회 시 +약 10일) ÷ 14노트",
         "year": "2026"
-      },
-      {
-        "indicator": "imf_gdp_growth_fcst_26_30",
-        "axis": "성장성",
-        "value": 1.4,
-        "percentile": 14.3,
-        "source": "IMF WEO 실질GDP성장률 전망 평균",
-        "year": "2026~2030"
       },
       {
         "indicator": "trend_pepero",
@@ -172,7 +172,7 @@
   },
   "뉴질랜드": {
     "final_rank": 4,
-    "final": 57.9,
+    "final": 56.2,
     "flags": "",
     "up": [
       {
@@ -192,11 +192,11 @@
         "year": "2025-10-29~2026-10-29"
       },
       {
-        "indicator": "oecd_risk",
+        "indicator": "tariff_hs1905_pct",
         "axis": "실행가능성",
         "value": 0.0,
         "percentile": 83.3,
-        "source": "OECD Country Risk Classification (2026-10-16 기준, docs/sources/oecd_country_risk_classification_current.pdf) — 고소득 OECD국 미분류(주석 6) → 0 처리",
+        "source": "WITS TRAINS MFN HS190590 단순평균 2023 MFN 3.33% → 한-뉴질랜드 FTA(2015 발효) 협정세율 0% 적용(검토 필요)",
         "year": "2026"
       }
     ],
@@ -210,33 +210,90 @@
         "year": "2025"
       },
       {
-        "indicator": "lead_time_days",
-        "axis": "실행가능성",
-        "value": 20.0,
-        "percentile": 22.2,
-        "source": "Fluent Cargo 항로 해상거리 부산–오클랜드 6,719nm ÷ 14노트",
-        "year": "2026"
-      },
-      {
         "indicator": "gap_jp_kr",
         "axis": "수출입",
         "value": -0.002242247016979,
         "percentile": 28.6,
         "source": "UN Comtrade 수입시장 점유율 일본−한국",
         "year": "2025"
+      },
+      {
+        "indicator": "lead_time_days",
+        "axis": "실행가능성",
+        "value": 20.0,
+        "percentile": 33.3,
+        "source": "Fluent Cargo 항로 해상거리 부산–오클랜드 6,719nm ÷ 14노트",
+        "year": "2026"
+      }
+    ]
+  },
+  "말레이시아": {
+    "final_rank": 5,
+    "final": 55.5,
+    "flags": "",
+    "up": [
+      {
+        "indicator": "trend_korean_food",
+        "axis": "트렌드",
+        "value": 42.0,
+        "percentile": 94.4,
+        "source": "Google Trends '한국 요리'(주제, 언어 무관) 국가별 관심도",
+        "year": "2025-10-29~2026-10-29"
+      },
+      {
+        "indicator": "trend_pepero",
+        "axis": "트렌드",
+        "value": 18.0,
+        "percentile": 94.4,
+        "source": "Google Trends 'Pepero'(검색어) 국가별 관심도",
+        "year": "2025-10-29~2026-10-29"
+      },
+      {
+        "indicator": "trend_korean_snacks",
+        "axis": "트렌드",
+        "value": 25.0,
+        "percentile": 92.9,
+        "source": "Google Trends 'korean snack'(검색어) 국가별 관심도",
+        "year": "2025-10-29~2026-10-29"
+      }
+    ],
+    "down": [
+      {
+        "indicator": "halal_required",
+        "axis": "실행가능성",
+        "value": 1.0,
+        "percentile": 11.1,
+        "source": "Pew Research Center 국가별 종교 구성(2010–2020), 무슬림 인구 50% 초과 = 1",
+        "year": "2026"
+      },
+      {
+        "indicator": "kr_exp_ytd_growth_26",
+        "axis": "수출입",
+        "value": -0.102415737709674,
+        "percentile": 21.1,
+        "source": "관세청 한국 제과류 수출액 전년동기비",
+        "year": "2026년 1~9월"
+      },
+      {
+        "indicator": "imf_gdp_pc_2026",
+        "axis": "성장성",
+        "value": 15981.339,
+        "percentile": 33.3,
+        "source": "IMF WEO 1인당 GDP(USD)",
+        "year": "2026"
       }
     ]
   },
   "아랍에미리트": {
-    "final_rank": 5,
-    "final": 55.4,
+    "final_rank": 6,
+    "final": 54.0,
     "flags": "재수출 허브(수입액 과대 가능)",
     "up": [
       {
         "indicator": "lead_time_days",
         "axis": "실행가능성",
         "value": 6.4,
-        "percentile": 88.9,
+        "percentile": 100.0,
         "source": "Fluent Cargo 항로 해상거리 나바셰바–제벨알리 1,158nm ÷ 14노트 + 하리아나–나바셰바 내륙 약 3일(추정)",
         "year": "2026"
       },
@@ -267,83 +324,26 @@
         "year": "2026년 1~9월"
       },
       {
-        "indicator": "tariff_hs1905_pct",
-        "axis": "실행가능성",
-        "value": 5.0,
-        "percentile": 16.7,
-        "source": "WITS TRAINS MFN HS190590 단순평균 2023 = 5% (GCC 공동관세. 한-UAE CEPA 2026-05-01 발효, 1905 양허 미확인 → MFN 보수 적용)",
-        "year": "2026"
-      },
-      {
         "indicator": "halal_required",
         "axis": "실행가능성",
         "value": 1.0,
-        "percentile": 22.2,
-        "source": "Pew Research Center 국가별 종교 구성(2010–2020), 무슬림 인구 50% 초과 = 1",
-        "year": "2026"
-      }
-    ]
-  },
-  "말레이시아": {
-    "final_rank": 6,
-    "final": 54.6,
-    "flags": "",
-    "up": [
-      {
-        "indicator": "trend_korean_food",
-        "axis": "트렌드",
-        "value": 42.0,
-        "percentile": 94.4,
-        "source": "Google Trends '한국 요리'(주제, 언어 무관) 국가별 관심도",
-        "year": "2025-10-29~2026-10-29"
-      },
-      {
-        "indicator": "trend_pepero",
-        "axis": "트렌드",
-        "value": 18.0,
-        "percentile": 94.4,
-        "source": "Google Trends 'Pepero'(검색어) 국가별 관심도",
-        "year": "2025-10-29~2026-10-29"
-      },
-      {
-        "indicator": "trend_korean_snacks",
-        "axis": "트렌드",
-        "value": 25.0,
-        "percentile": 92.9,
-        "source": "Google Trends 'korean snack'(검색어) 국가별 관심도",
-        "year": "2025-10-29~2026-10-29"
-      }
-    ],
-    "down": [
-      {
-        "indicator": "kr_exp_ytd_growth_26",
-        "axis": "수출입",
-        "value": -0.102415737709674,
-        "percentile": 21.1,
-        "source": "관세청 한국 제과류 수출액 전년동기비",
-        "year": "2026년 1~9월"
-      },
-      {
-        "indicator": "halal_required",
-        "axis": "실행가능성",
-        "value": 1.0,
-        "percentile": 22.2,
+        "percentile": 11.1,
         "source": "Pew Research Center 국가별 종교 구성(2010–2020), 무슬림 인구 50% 초과 = 1",
         "year": "2026"
       },
       {
-        "indicator": "imf_gdp_pc_2026",
-        "axis": "성장성",
-        "value": 15981.339,
-        "percentile": 33.3,
-        "source": "IMF WEO 1인당 GDP(USD)",
-        "year": "2026"
+        "indicator": "trend_kpop",
+        "axis": "트렌드",
+        "value": 35.0,
+        "percentile": 28.1,
+        "source": "Google Trends 'K-pop' 국가별 관심도",
+        "year": "2025-11-03~2026-11-03"
       }
     ]
   },
   "몽골": {
     "final_rank": 7,
-    "final": 51.2,
+    "final": 51.5,
     "flags": "",
     "up": [
       {
@@ -400,7 +400,7 @@
   },
   "카타르": {
     "final_rank": 8,
-    "final": 50.2,
+    "final": 51.0,
     "flags": "",
     "up": [
       {
@@ -420,12 +420,12 @@
         "year": "2025"
       },
       {
-        "indicator": "imf_gdp_growth_fcst_26_30",
-        "axis": "성장성",
-        "value": 5.0,
-        "percentile": 85.7,
-        "source": "IMF WEO 실질GDP성장률 전망 평균",
-        "year": "2026~2030"
+        "indicator": "lead_time_days",
+        "axis": "실행가능성",
+        "value": 7.0,
+        "percentile": 88.9,
+        "source": "Fluent Cargo 항로 해상거리 나바셰바–제벨알리 1,158nm + 제벨알리–하마드 약 200nm(추정) ÷ 14노트 + 하리아나–나바셰바 내륙 약 3일(추정)",
+        "year": "2026"
       }
     ],
     "down": [
@@ -438,134 +438,134 @@
         "year": "2026년 1~9월"
       },
       {
-        "indicator": "tariff_hs1905_pct",
-        "axis": "실행가능성",
-        "value": 5.0,
-        "percentile": 16.7,
-        "source": "WITS TRAINS MFN HS190590 단순평균 2023 = 5% (GCC 공동관세, 한-GCC FTA 미발효)",
-        "year": "2026"
-      },
-      {
         "indicator": "halal_required",
         "axis": "실행가능성",
         "value": 1.0,
-        "percentile": 22.2,
+        "percentile": 11.1,
         "source": "Pew Research Center 국가별 종교 구성(2010–2020), 무슬림 인구 50% 초과 = 1",
         "year": "2026"
-      }
-    ]
-  },
-  "우즈베키스탄": {
-    "final_rank": 9,
-    "final": 50.0,
-    "flags": "데이터 부족(트렌드) 데이터 부족(수출입)",
-    "up": [
-      {
-        "indicator": "imp_cagr",
-        "axis": "성장성",
-        "value": 0.2262757110933881,
-        "percentile": 100.0,
-        "source": "UN Comtrade 제과류(HS 1905·1806·2105·1704) 수입액 CAGR",
-        "year": "2024"
       },
       {
-        "indicator": "imf_gdp_growth_fcst_26_30",
+        "indicator": "wb_0_14세비중",
         "axis": "성장성",
-        "value": 6.36,
-        "percentile": 100.0,
-        "source": "IMF WEO 실질GDP성장률 전망 평균",
-        "year": "2026~2030"
-      },
-      {
-        "indicator": "lead_time_days",
-        "axis": "실행가능성",
-        "value": 3.0,
-        "percentile": 100.0,
-        "source": "알마티–타슈켄트 도로 약 800km, 국경 포함 약 3일(추정, 검토 필요)",
-        "year": "2026"
-      }
-    ],
-    "down": [
-      {
-        "indicator": "wb_도시화율",
-        "axis": "성장성",
-        "value": 51.0173495084299,
-        "percentile": 4.8,
-        "source": "World Bank 도시화율",
+        "value": 15.0002960632256,
+        "percentile": 23.8,
+        "source": "World Bank 0~14세 인구 비중",
         "year": "2025"
-      },
-      {
-        "indicator": "imf_gdp_pc_2026",
-        "axis": "성장성",
-        "value": 4575.069,
-        "percentile": 9.5,
-        "source": "IMF WEO 1인당 GDP(USD)",
-        "year": "2026"
-      },
-      {
-        "indicator": "oecd_risk",
-        "axis": "실행가능성",
-        "value": 5.0,
-        "percentile": 11.1,
-        "source": "OECD Country Risk Classification (2026-10-16 기준, docs/sources/oecd_country_risk_classification_current.pdf)",
-        "year": "2026"
       }
     ]
   },
-  "쿠웨이트": {
-    "final_rank": 10,
-    "final": 46.4,
+  "멕시코": {
+    "final_rank": 9,
+    "final": 47.7,
     "flags": "",
     "up": [
       {
-        "indicator": "wb_도시화율",
-        "axis": "성장성",
-        "value": 100.0,
-        "percentile": 97.6,
-        "source": "World Bank 도시화율",
-        "year": "2025"
+        "indicator": "trend_kpop",
+        "axis": "트렌드",
+        "value": 94.0,
+        "percentile": 96.9,
+        "source": "Google Trends 'K-pop' 국가별 관심도",
+        "year": "2025-11-03~2026-11-03"
       },
       {
-        "indicator": "trend_pepero",
-        "axis": "트렌드",
-        "value": 8.0,
-        "percentile": 83.3,
-        "source": "Google Trends 'Pepero'(검색어) 국가별 관심도",
-        "year": "2025-10-29~2026-10-29"
+        "indicator": "kr_exp_cagr_21_25",
+        "axis": "수출입",
+        "value": 0.2990874831111092,
+        "percentile": 94.4,
+        "source": "관세청 한국 제과류 수출액 CAGR",
+        "year": "2021→2025"
       },
       {
         "indicator": "imp_cagr",
         "axis": "성장성",
-        "value": 0.1384987122438115,
-        "percentile": 61.9,
+        "value": 0.1623260464077653,
+        "percentile": 90.5,
         "source": "UN Comtrade 제과류(HS 1905·1806·2105·1704) 수입액 CAGR",
         "year": "2025"
       }
     ],
     "down": [
       {
-        "indicator": "trend_korean_food",
-        "axis": "트렌드",
-        "value": 7.5,
-        "percentile": 11.1,
-        "source": "Google Trends '한국 요리'(주제) 지역 비교 환산(싱가포르=100, 52주 평균비, raw/trends_compare_food)",
-        "year": "2025-10-29~2026-10-29"
+        "indicator": "sugar_tax",
+        "axis": "실행가능성",
+        "value": 1.0,
+        "percentile": 0.0,
+        "source": "멕시코 IEPS법 제2조 I-J: 275kcal/100g 이상 비기초식품(과자·초콜릿·아이스크림 포함) 8%",
+        "year": "2026"
       },
+      {
+        "indicator": "tariff_hs1905_pct",
+        "axis": "실행가능성",
+        "value": 10.0,
+        "percentile": 11.1,
+        "source": "WITS TRAINS MFN HS190590 단순평균 2023 = 10% (한국과 FTA 없음. 2026 비FTA국 관세인상 대상 품목 여부 확인 필요)",
+        "year": "2026"
+      },
+      {
+        "indicator": "lpi_2023",
+        "axis": "실행가능성",
+        "value": 2.9,
+        "percentile": 11.1,
+        "source": "World Bank API LP.LPI.OVRL.XQ (LPI 2023년판, API 연도 2022)",
+        "year": "2023"
+      }
+    ]
+  },
+  "브라질": {
+    "final_rank": 10,
+    "final": 45.3,
+    "flags": "",
+    "up": [
       {
         "indicator": "kr_exp_ytd_growth_26",
         "axis": "수출입",
-        "value": -0.1195385165298998,
-        "percentile": 15.8,
+        "value": 0.4654964954946714,
+        "percentile": 89.5,
         "source": "관세청 한국 제과류 수출액 전년동기비",
         "year": "2026년 1~9월"
       },
       {
+        "indicator": "kr_exp_cagr_21_25",
+        "axis": "수출입",
+        "value": 0.1826884932912289,
+        "percentile": 77.8,
+        "source": "관세청 한국 제과류 수출액 CAGR",
+        "year": "2021→2025"
+      },
+      {
+        "indicator": "wb_도시화율",
+        "axis": "성장성",
+        "value": 88.1772996487898,
+        "percentile": 76.2,
+        "source": "World Bank 도시화율",
+        "year": "2025"
+      }
+    ],
+    "down": [
+      {
         "indicator": "tariff_hs1905_pct",
         "axis": "실행가능성",
-        "value": 5.0,
-        "percentile": 16.7,
-        "source": "WITS TRAINS MFN HS190590 단순평균 2023 = 5% (GCC 공동관세, 한-GCC FTA 미발효)",
+        "value": 18.0,
+        "percentile": 0.0,
+        "source": "WITS TRAINS MFN HS190590 단순평균 2023 = 18% (메르코수르 공동관세, 한국과 FTA 없음)",
         "year": "2026"
+      },
+      {
+        "indicator": "lead_time_days",
+        "axis": "실행가능성",
+        "value": 33.9,
+        "percentile": 0.0,
+        "source": "부산–싱가포르 2,528nm + 싱가포르–희망봉–산투스 약 8,900nm(추정, 검토 필요) ÷ 14노트",
+        "year": "2026"
+      },
+      {
+        "indicator": "trend_korean_snacks",
+        "axis": "트렌드",
+        "value": 2.0,
+        "percentile": 0.0,
+        "source": "Google Trends 'korean snack'(검색어) 국가별 관심도",
+        "year": "2025-10-29~2026-10-29"
       }
     ]
   }

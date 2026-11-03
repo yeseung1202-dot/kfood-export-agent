@@ -64,6 +64,7 @@ INDICATORS = [
     ("trend_korean_food", "트렌드", 1, "Google Trends '한국 요리'(주제, 언어 무관) 국가별 관심도", "2025-10-29~2026-10-29"),
     ("trend_korean_snacks", "트렌드", 1, "Google Trends 'korean snack'(검색어) 국가별 관심도", "2025-10-29~2026-10-29"),
     ("trend_pepero", "트렌드", 1, "Google Trends 'Pepero'(검색어) 국가별 관심도", "2025-10-29~2026-10-29"),
+    ("trend_kpop", "트렌드", 1, "Google Trends 'K-pop' 국가별 관심도", "2025-11-03~2026-11-03"),
     ("kofice_hansik_favor", "트렌드", 1, "KOFICE 해외한류실태조사 한식 호감도", "최신 조사"),
     ("kr_exp_cagr_21_25", "수출입", 1, "관세청 한국 제과류 수출액 CAGR", "2021→2025"),
     ("kr_exp_ytd_growth_26", "수출입", 1, "관세청 한국 제과류 수출액 전년동기비", "2026년 1~9월"),

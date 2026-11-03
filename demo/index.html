@@ -236,7 +236,7 @@ const isNum = v => v !== null && v !== undefined && !Number.isNaN(v);
 const NAME = {
   imp_cagr: "제과 수입시장 성장률", imf_gdp_growth_fcst_26_30: "GDP 성장 전망(2026~2030 평균)", imf_gdp_pc_2026: "1인당 GDP",
   "wb_0_14세비중": "0~14세 인구 비중", "wb_도시화율": "도시화율", trend_korean_food: "'한국 요리' 검색 관심도",
-  trend_korean_snacks: "'korean snack' 검색 관심도", trend_pepero: "'Pepero' 검색 관심도", kofice_hansik_favor: "한식 호감도",
+  trend_korean_snacks: "'korean snack' 검색 관심도", trend_pepero: "'Pepero' 검색 관심도", trend_kpop: "'K-pop' 검색 관심도", kofice_hansik_favor: "한식 호감도",
   kr_exp_cagr_21_25: "한국 제과 수출 증가율(연평균)", kr_exp_ytd_growth_26: "한국 제과 수출 2026년 1~9월 증감",
   gap_jp_kr: "일본 대비 한국 점유율 여백", lead_time_days: "롯데 거점 기준 리드타임", lpi_2023: "물류성과지수(LPI)",
   tariff_hs1905_pct: "HS1905 관세", halal_required: "할랄 인증", sugar_tax: "과자 열량세", oecd_risk: "OECD 국가위험",
@@ -248,7 +248,7 @@ const FMT = {
   gap_jp_kr: v => (v >= 0 ? "+" : "") + (v * 100).toFixed(1) + "%p",
   imf_gdp_growth_fcst_26_30: v => v.toFixed(1) + "%", imf_gdp_pc_2026: v => Math.round(v).toLocaleString("ko-KR") + "달러",
   "wb_0_14세비중": v => v.toFixed(1) + "%", "wb_도시화율": v => v.toFixed(1) + "%",
-  trend_korean_food: v => g(v) + "/100", trend_korean_snacks: v => g(v) + "/100", trend_pepero: v => g(v) + "/100",
+  trend_korean_food: v => g(v) + "/100", trend_korean_snacks: v => g(v) + "/100", trend_pepero: v => g(v) + "/100", trend_kpop: v => g(v) + "/100",
   lead_time_days: v => v.toFixed(1) + "일", lpi_2023: v => v.toFixed(1) + "점", tariff_hs1905_pct: v => g(v) + "%",
   halal_required: v => (v ? "필요" : "불필요"), sugar_tax: v => (v ? "있음" : "없음"), oecd_risk: v => v.toFixed(0) + "등급",
   internal_margin_pct: v => g(v) + "%",
