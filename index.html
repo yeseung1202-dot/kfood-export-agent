@@ -70,15 +70,26 @@ a:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--red); outli
 .hero-copy { display: grid; gap: 22px; align-content: center; }
 .hero .eyebrow { color: var(--red); }
 .hero .lede { font-size: 18px; color: var(--ink-2); max-width: 46ch; }
-.photo { position: relative; aspect-ratio: 4 / 3; max-width: 100%; }
-.photo canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* 롯데 레드 패널: 로고·사진 없이 브랜드 색과 실제 결과만 */
+.photo { position: relative; aspect-ratio: 4 / 3; max-width: 100%; overflow: hidden; border-radius: 4px; color: #fff;
+  background: repeating-linear-gradient(90deg, rgba(0,0,0,0.10) 0 1px, transparent 1px 38px),
+              radial-gradient(120% 90% at 50% 45%, #c8211a 0%, #9c1712 55%, #5a0c0a 100%);
+  display: grid; align-content: space-between; gap: 16px; padding: clamp(20px, 4vw, 36px); }
+.photo .p-top { font-family: var(--font-data); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; }
+.photo .p-title { font-family: var(--font-display); font-size: clamp(22px, 3vw, 32px); line-height: 1.25; }
+.photo ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 1px solid rgba(255,255,255,0.35); }
+.photo li { display: grid; grid-template-columns: 2.2em minmax(0, 1fr) auto; align-items: baseline; gap: 8px; padding-block: 10px; border-bottom: 1px solid rgba(255,255,255,0.35); }
+.photo li .r { font-family: var(--font-data); font-weight: 600; }
+.photo li .c { font-size: clamp(17px, 2vw, 21px); font-weight: 700; }
+.photo li .v { font-family: var(--font-data); font-size: 13px; opacity: 0.9; }
+.photo .p-foot { font-size: 12px; opacity: 0.85; }
 .manifest { display: flex; flex-wrap: wrap; gap: 0; border-top: 1px solid var(--rule); padding-block: 18px; font-size: 13px; color: var(--ink-2); }
 .manifest span { display: grid; gap: 2px; padding-right: 28px; margin-right: 28px; border-right: 1px solid var(--rule); }
 .manifest span:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
 .manifest b { font-family: var(--font-data); color: var(--ink); font-size: 18px; font-weight: 600; font-variant-numeric: tabular-nums; }
 @media (max-width: 820px) {
   .hero .inner { grid-template-columns: 1fr; padding-block: 40px 24px; }
-  .photo { order: -1; aspect-ratio: 16 / 10; }
+  .photo { aspect-ratio: auto; }
   .manifest span { padding-right: 16px; margin-right: 16px; padding-block: 4px; }
 }
 
@@ -217,7 +228,16 @@ footer.foot .inner { padding-block: 32px 40px; display: grid; gap: 12px; }
       <h1>K-제과 수출<br>유망국 발굴 에이전트</h1>
       <p class="lede">많이 팔릴 나라를 넘어, 실제로 보낼 수 있고 남는 나라를 찾습니다. 공개 데이터를 자동으로 모아 37개국을 점수화하고, 롯데의 생산거점과 물류 조건으로 다시 검증한 뒤, 수치마다 출처를 붙여 TOP3를 추천합니다.</p>
     </div>
-    <div class="photo" aria-hidden="true"><canvas id="still"></canvas></div>
+    <div class="photo" role="img" aria-label="결과 요약: 신규 개척형 TOP3 싱가포르, 영국, 네덜란드">
+      <p class="p-top">LOTTE WELLFOOD · 과제 2</p>
+      <p class="p-title">K-제과 신규 개척형<br>수출 유망국 TOP3</p>
+      <ol>
+        <li><span class="r">01</span><span class="c">싱가포르</span><span class="v">69.7점 · 유지율 98%</span></li>
+        <li><span class="r">02</span><span class="c">영국</span><span class="v">60.5점 · 유지율 86%</span></li>
+        <li><span class="r">03</span><span class="c">네덜란드</span><span class="v">58.8점 · 유지율 58%</span></li>
+      </ol>
+      <p class="p-foot">37개국 수집 → 22개국 평가 → 가중치 2,000회 재계산</p>
+    </div>
   </div>
   <div class="inner">
     <div class="manifest">
@@ -558,67 +578,6 @@ const STABLE = 70;
   if (!LINKS.demo && !LINKS.repo) document.getElementById("links").hidden = true;
 })();
 
-// ---- 히어로 정물: 베이지 바탕 위 초콜릿 코팅 스틱 (상표·포장 없이 제품 사진 느낌만) ----
-function drawStill() {
-  const cv = document.getElementById("still");
-  const box = cv.parentElement.getBoundingClientRect();
-  if (!box.width) return;
-  const dpr = Math.min(2, window.devicePixelRatio || 1);
-  cv.width = Math.round(box.width * dpr); cv.height = Math.round(box.height * dpr);
-  const g = cv.getContext("2d");
-  g.setTransform(dpr, 0, 0, dpr, 0, 0);
-  const W = box.width, H = box.height;
-  g.clearRect(0, 0, W, H);
-  let seed = 7;
-  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-
-  // 위에서 비스듬히 떨어지는 부드러운 빛
-  const light = g.createRadialGradient(W * 0.3, H * 0.15, 0, W * 0.3, H * 0.15, W * 0.9);
-  light.addColorStop(0, "rgba(255,255,255,0.28)"); light.addColorStop(1, "rgba(255,255,255,0)");
-  g.fillStyle = light; g.fillRect(0, 0, W, H);
-
-  const len = Math.min(W, H * 1.35) * 0.78, r = Math.max(4, len * 0.022);
-  function stick(cx, cy, ang, dip) {
-    g.save(); g.translate(cx, cy); g.rotate(ang);
-    const x0 = -len / 2, x1 = len / 2, xd = x0 + len * (1 - dip);
-    // 그림자
-    g.save(); g.translate(r * 0.9, r * 1.6); g.filter = `blur(${r * 0.9}px)`;
-    g.fillStyle = "rgba(60,30,15,0.28)"; g.beginPath(); g.roundRect(x0, -r, len, r * 2, r); g.fill(); g.restore();
-    // 비스킷 손잡이
-    const bis = g.createLinearGradient(0, -r, 0, r);
-    bis.addColorStop(0, "#f2d39b"); bis.addColorStop(0.45, "#e2b26b"); bis.addColorStop(1, "#b98443");
-    g.fillStyle = bis; g.beginPath(); g.roundRect(x0, -r * 0.92, len, r * 1.84, r); g.fill();
-    // 초콜릿 코팅 (끝이 살짝 고르지 않게)
-    const ch = g.createLinearGradient(0, -r * 1.1, 0, r * 1.1);
-    ch.addColorStop(0, "#7a4a33"); ch.addColorStop(0.3, "#5b3322"); ch.addColorStop(0.75, "#3a1f14"); ch.addColorStop(1, "#2a160e");
-    g.fillStyle = ch; g.beginPath();
-    g.moveTo(xd, -r * 1.08);
-    g.lineTo(x1 - r, -r * 1.08); g.arcTo(x1 + r * 0.1, -r * 1.08, x1 + r * 0.1, 0, r * 1.05);
-    g.arcTo(x1 + r * 0.1, r * 1.08, x1 - r, r * 1.08, r * 1.05); g.lineTo(xd + r * 0.6, r * 1.08);
-    g.quadraticCurveTo(xd - r * 0.5, r * 0.3, xd + r * 0.2, -r * 0.2);
-    g.quadraticCurveTo(xd - r * 0.4, -r * 0.7, xd, -r * 1.08);
-    g.fill();
-    // 코팅 하이라이트
-    g.strokeStyle = "rgba(255,225,200,0.35)"; g.lineWidth = r * 0.28; g.lineCap = "round";
-    g.beginPath(); g.moveTo(xd + r * 2, -r * 0.5); g.lineTo(x1 - r * 1.5, -r * 0.5); g.stroke();
-    g.restore();
-  }
-  // 대각선으로 흐르듯 놓인 스틱 묶음
-  const base = -0.62, n = 9;
-  for (let i = 0; i < n; i++) {
-    const t = i / (n - 1);
-    const cx = W * (0.3 + t * 0.42) + (rnd() - 0.5) * W * 0.03;
-    const cy = H * (0.36 + t * 0.3) + (rnd() - 0.5) * H * 0.04;
-    stick(cx, cy, base + (rnd() - 0.5) * 0.12, 0.62 + rnd() * 0.06);
-  }
-  // 흩어진 부스러기
-  for (let i = 0; i < 26; i++) {
-    const x = W * (0.12 + rnd() * 0.8), y = H * (0.2 + rnd() * 0.72), s = r * (0.12 + rnd() * 0.3);
-    g.fillStyle = rnd() < 0.55 ? "rgba(74,40,26,0.75)" : "rgba(214,170,105,0.85)";
-    g.beginPath(); g.ellipse(x, y, s * 1.3, s, rnd() * 3, 0, Math.PI * 2); g.fill();
-  }
-}
-
 const NS = "http://www.w3.org/2000/svg";
 const el = (tag, attrs = {}, parent) => {
   const n = document.createElementNS(NS, tag);
@@ -730,7 +689,7 @@ function tables() {
     DATA.stab.map(d => `<tr><td>${d.c}</td><td>${d.v}%</td></tr>`).join("");
 }
 
-function drawAll() { drawStill(); drawSlope(); drawStab(); }
+function drawAll() { drawSlope(); drawStab(); }
 tables();
 drawAll();
 let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(drawAll, 120); });
